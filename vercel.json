@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "http://my-api.com/api/:path*"
+      "destination": "http://secure.geonames.org/api/:path*"
     }
   ]
 }
