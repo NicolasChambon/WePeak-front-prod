@@ -28,7 +28,7 @@ const userMiddleware = (store) => (next) => (action) => {
     case GET_USER_POSITION_NAME: {
       const { userPosition } = store.getState().user;
       fetch(
-        `http://secure.geonames.org/findNearbyPostalCodesJSON?lat=${userPosition.lat}&lng=${userPosition.lng}&username=nicolaschambon`
+        `https://secure.geonames.org/findNearbyPostalCodesJSON?lat=${userPosition.lat}&lng=${userPosition.lng}&username=nicolaschambon`
       )
         .then((response) => {
           if (!response.ok) {
