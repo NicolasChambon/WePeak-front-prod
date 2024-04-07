@@ -1,3 +1,9 @@
+import Home_hero_1 from '../../../../assets/images/Home_hero_1.avif';
+import Home_hero_2 from '../../../../assets/images/Home_hero_2.avif';
+import Home_hero_3 from '../../../../assets/images/Home_hero_3.avif';
+import Home_hero_4 from '../../../../assets/images/Home_hero_4.avif';
+import Home_hero_5 from '../../../../assets/images/Home_hero_5.avif';
+
 import Button from '../../../utils/Button/Button';
 import './Hero.scss';
 
@@ -23,30 +29,22 @@ const Hero = () => {
       </div>
       <div className="Hero-gallery">
         <img
-          src="/src/assets/images/Home_hero_1.avif"
+          src={Home_hero_1}
           alt="resort skiing"
           className="Hero-gallery-image"
         />
         <img
-          src="/src/assets/images/Home_hero_2.avif"
+          src={Home_hero_2}
           alt="cross biking"
           className="Hero-gallery-image"
         />
         <img
-          src="/src/assets/images/Home_hero_3.avif"
+          src={Home_hero_3}
           alt="backcountry skiing"
           className="Hero-gallery-image"
         />
-        <img
-          src="/src/assets/images/Home_hero_4.avif"
-          alt="surfing"
-          className="Hero-gallery-image"
-        />
-        <img
-          src="/src/assets/images/Home_hero_5.avif"
-          alt="hiking"
-          className="Hero-gallery-image"
-        />
+        <img src={Home_hero_4} alt="surfing" className="Hero-gallery-image" />
+        <img src={Home_hero_5} alt="hiking" className="Hero-gallery-image" />
       </div>
     </div>
   );

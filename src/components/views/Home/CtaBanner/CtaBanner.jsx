@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 
+import image from '../../../../assets/images/Home_hero_6.avif';
+
 import './CtaBanner.scss';
 import Button from '../../../utils/Button/Button';
 
@@ -20,11 +22,7 @@ const CtaBanner = () => {
         </div>
       </div>
       <div className="CtaBanner-right">
-        <img
-          src="/src/assets/images/Home_hero_6.avif"
-          alt=""
-          className="CtaBanner-right-image"
-        />
+        <img src={image} alt="" className="CtaBanner-right-image" />
       </div>
     </div>
   );

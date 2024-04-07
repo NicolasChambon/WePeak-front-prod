@@ -1,6 +1,12 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+import image_404_1 from '../../../assets/images/image_404_1.jpg';
+import image_404_2 from '../../../assets/images/image_404_2.jpg';
+import image_404_3 from '../../../assets/images/image_404_3.jpg';
+import image_404_4 from '../../../assets/images/image_404_4.jpg';
+import image_404_5 from '../../../assets/images/image_404_5.jpg';
+
 import './Error404.scss';
 
 const Error404 = () => {
@@ -13,7 +19,7 @@ const Error404 = () => {
   return (
     <main className="Error404">
       <div className="Error404-imgContainer">
-        <img src={`/src/assets/images/image_404_${imgNumber}.jpg`} alt="" />
+        <img src={`image_404_${imgNumber}`} alt="" />
       </div>
       <div className="Error404-right">
         <h2 className="Error404-right-title">404</h2>

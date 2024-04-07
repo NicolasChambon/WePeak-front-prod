@@ -4,17 +4,15 @@ import { Link } from 'react-router-dom';
 import { IconContext } from 'react-icons';
 import { FiArrowRight } from 'react-icons/fi';
 
+import image from '../../../assets/images/Home_hero_3.avif';
+
 import './EventCard.scss';
 
 const EventCard = ({ title, date, difficulty, slug }) => {
   return (
     <article className="EventCard">
       <Link to={`/activities/${slug}`}>
-        <img
-          src="/src/assets/images/Home_hero_3.avif"
-          alt=""
-          className="EventCard-image"
-        />
+        <img src={image} alt="" className="EventCard-image" />
       </Link>
       <div className="EventCard-content">
         <span className="EventCard-content-category">Lancé de nain</span>
