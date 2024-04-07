@@ -1,0 +1,46 @@
+@use '/src/styles/variables' as v;
+
+.Activity-detailsAndApply {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding: 0 1.5rem;
+
+  &-description {
+    width: 55%;
+
+    // Description
+    h3 {
+      color: v.$textColor;
+      font-size: 1.3rem;
+      font-family: v.$titleFont;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    // Description text
+    p {
+      color: v.$textColor;
+      font-size: v.$textSize;
+      line-height: 1.2rem;
+    }
+  }
+
+  &-apply {
+    align-items: center;
+    background-color: v.$accentColor;
+    border-radius: v.$borderRadius;
+    border: none;
+    color: v.$textColor;
+    display: flex;
+    font-family: v.$textFont;
+    font-weight: 600;
+    height: 3rem;
+    justify-content: center;
+    width: 35%;
+
+    &:hover {
+      background-color: v.$accentColorLight;
+    }
+  }
+}

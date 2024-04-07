@@ -1,0 +1,7 @@
+POST http://melvinleroux-server.eddi.cloud/api/login_check
+Content-Type: application/json
+
+{
+    "username":"admin@admin.com",
+    "password": "admin"
+}

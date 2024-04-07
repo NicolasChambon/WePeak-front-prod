@@ -1,0 +1,43 @@
+@use '/src/styles/variables' as v;
+
+.ActivityPictures {
+  margin-bottom: 1.5rem;
+  padding: 0 1.5rem;
+
+  // Pictures
+  h3 {
+    color: v.$textColor;
+    font-size: 1.3rem;
+    font-family: v.$titleFont;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  &-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: left;
+
+    @media (max-width: v.$mobile) {
+      justify-content: center;
+    }
+
+    &-imgContainer {
+      border-radius: v.$borderRadius;
+      height: 10rem;
+      overflow: hidden;
+      width: 10rem;
+
+      @media (max-width: v.$mobile) {
+        width: 70%;
+      }
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}

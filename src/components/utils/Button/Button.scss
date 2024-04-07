@@ -1,0 +1,38 @@
+@use '/src/styles/variables' as v;
+
+.Button {
+  padding: 0.75rem 1.25rem;
+  border-radius: v.$borderRadius;
+  border: solid 1px;
+  display: inline-block;
+  font-size: v.$textSize;
+  color: v.$textColor;
+  font-weight: 500;
+}
+
+.primary {
+  background-color: v.$primaryColor;
+  border-color: v.$primaryColorDark;
+
+  &:hover {
+    background-color: v.$primaryColorDark;
+  }
+}
+
+.secondary {
+  background-color: v.$secondaryColor;
+  border-color: v.$secondaryColorDark;
+
+  &:hover {
+    background-color: v.$secondaryColorDark;
+  }
+}
+
+.accent {
+  background-color: v.$accentColor;
+  border-color: v.$accentColorDark;
+
+  &:hover {
+    background-color: v.$accentColorDark;
+  }
+}

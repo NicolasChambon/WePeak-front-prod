@@ -1,0 +1,10 @@
+POST http://melvinleroux-server.eddi.cloud/api/v1/contact HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Melvin",
+  "email": "nico.chambon@gmail.com",
+  "phone": "1234567890",
+  "company": "WePeaks",
+  "message": "Hello"
+}

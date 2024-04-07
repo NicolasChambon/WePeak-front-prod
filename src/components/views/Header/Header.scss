@@ -1,0 +1,220 @@
+@use '/src/styles/variables' as v;
+
+.Header {
+  align-items: center;
+  background-color: v.$backgroundColor;
+  border-bottom: 1px solid v.$backgroundColor;
+  display: flex;
+  row-gap: 0.75rem;
+  height: 4.1rem;
+  justify-content: space-between;
+  padding: 0.2rem 1.5rem;
+  position: sticky;
+  top: 0;
+  transition: box-shadow 0.5s ease;
+  width: 100%;
+  z-index: 1001;
+
+  &.scrolled {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  @media (max-width: v.$tablet) {
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 390px) {
+    padding: 0.2rem 0.5rem;
+  }
+
+  &-left {
+    align-items: center;
+    display: flex;
+    gap: 1rem;
+
+    &-logo-container {
+      @media (max-width: v.$mobile) {
+        max-width: 3.7rem;
+        overflow: hidden;
+      }
+    }
+
+    &-logo {
+      max-height: 2.5rem;
+      order: 1;
+      margin: 0.5rem;
+    }
+
+    &-openSearch {
+      display: none;
+
+      @media (max-width: v.$tablet) {
+        display: contents;
+      }
+
+      &-icon {
+        color: v.$textColor;
+        font-size: 1.4rem;
+
+        &:hover {
+          color: v.$textColorLight;
+        }
+      }
+    }
+  }
+
+  &-form {
+    align-self: baseline;
+    display: flex;
+    margin-top: 0.5rem;
+    order: 2;
+    width: 50%;
+
+    @media (max-width: v.$tablet) {
+      margin-top: 0;
+      order: 3;
+      width: 100%;
+    }
+
+    &-search {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      // search input location
+      input {
+        border: 1px solid v.$secondaryColor;
+        border-right: none;
+        border-radius: v.$borderRadius 0 0 v.$borderRadius;
+        font-family: v.$textFont;
+        height: 2.5rem;
+        padding: 1rem;
+        width: 100%;
+
+        &:hover {
+          border-color: v.$textColor;
+        }
+
+        &::placeholder {
+          color: v.$secondaryColor;
+          font-size: 1rem;
+        }
+      }
+
+      &-cities {
+        background-color: v.$secondaryColorT;
+        border: 1px solid v.$secondaryColor;
+        border-radius: v.$borderRadius;
+        margin-top: 0.2rem;
+        overflow: hidden;
+
+        &-city {
+          align-items: center;
+          background-color: v.$secondaryColorT;
+          border: none;
+          display: flex;
+          font-family: v.$textFont;
+          height: 2rem;
+          padding: 1.3rem 1rem;
+          text-align: left;
+          width: 100%;
+
+          &:hover {
+            background-color: v.$secondaryColor;
+          }
+        }
+      }
+    }
+
+    // submit search button
+    &-submit {
+      background-color: v.$primaryColor;
+      border: none;
+      color: v.$backgroundColor;
+      cursor: auto; // while submit button is not working
+      border-radius: 0 v.$borderRadius v.$borderRadius 0;
+      height: 2.5rem;
+      width: 2.5rem;
+
+      .search-logo {
+        color: v.$textColor;
+        font-size: 1.25rem;
+      }
+
+      // commented while submit button is not working
+      // &:hover {
+      //   background-color: v.$primaryColorDark;
+      // }
+    }
+  }
+
+  &-nav {
+    display: flex;
+    justify-content: end;
+    order: 3;
+
+    @media (max-width: v.$tablet) {
+      order: 2;
+    }
+
+    &-links {
+      align-items: center;
+      display: flex;
+      font-size: v.$textSize;
+      font-weight: 600;
+      gap: 1rem;
+
+      .connect:hover {
+        color: v.$textColorLight;
+      }
+
+      .connect,
+      .register {
+        align-items: center;
+        display: flex;
+        height: 2.3rem;
+        padding: 0.5rem 1rem;
+      }
+
+      .register {
+        background-color: v.$accentColor;
+        border-radius: v.$borderRadius;
+        color: v.$textColor;
+
+        &:hover {
+          background-color: v.$accentColorLight;
+        }
+      }
+
+      .messages,
+      .profile {
+        color: v.$textColor;
+
+        &-picture-container {
+          border: v.$backgroundColorDark solid 1px;
+          border-radius: 50%;
+          height: 3.3rem;
+          overflow: hidden;
+          width: 3.3rem;
+
+          img {
+            height: 100%;
+            width: 100%;
+          }
+        }
+
+        &:hover {
+          color: v.$secondaryColorDark;
+        }
+      }
+
+      .messages {
+        margin-top: 0.1rem;
+
+        &-icon {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}

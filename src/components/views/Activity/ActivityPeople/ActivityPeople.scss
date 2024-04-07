@@ -1,0 +1,68 @@
+@use '/src/styles/variables' as v;
+
+.ActivityPeople {
+  margin-bottom: 1.5rem;
+  padding: 0 1.5rem;
+
+  // People
+  h3 {
+    color: v.$textColor;
+    font-size: 1.3rem;
+    font-family: v.$titleFont;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  &-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    justify-content: left;
+
+    // <p> waiting subtitle
+    &-waiting {
+      font-weight: 600;
+      margin-top: 1.5rem;
+    }
+
+    &.waiting {
+      margin-top: 1rem;
+    }
+
+    &-card {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      width: 4rem;
+
+      &-imgContainer {
+        border: v.$backgroundColorDark solid 1px;
+        border-radius: 50%;
+        height: 3.3rem;
+        overflow: hidden;
+        width: 3.3rem;
+
+        img {
+          height: 100%;
+          width: 100%;
+
+          &.waiting {
+            filter: blur(2px);
+          }
+        }
+      }
+
+      &-name {
+        color: v.$textColor;
+        font-size: v.$textSize;
+        font-weight: 600;
+        text-align: center;
+
+        &.waiting {
+          color: v.$textColorLight;
+        }
+      }
+    }
+  }
+}

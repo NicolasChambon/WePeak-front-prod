@@ -1,0 +1,15 @@
+@use '/src/styles/variables' as v;
+
+.Contact {
+  text-align: center;
+  margin: 4rem auto 2.5rem auto;
+  width: 55%;
+
+  @media (max-width: v.$tablet) {
+    width: 80%;
+  }
+
+  @media (max-width: v.$mobile) {
+    width: 95%;
+  }
+}

@@ -1,0 +1,82 @@
+@use '/src/styles/variables' as v;
+
+.ActivityIllustration {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding: 0 1.5rem;
+
+  @media (max-width: v.$tablet) {
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  &-imgContainer {
+    border-radius: v.$borderRadius;
+    height: 25rem;
+    overflow: hidden;
+    width: 55%;
+
+    @media (max-width: v.$tablet) {
+      width: 100%;
+    }
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &-mapCard {
+    background-color: v.$accentColor;
+    border-radius: v.$borderRadius;
+    overflow: hidden;
+    height: 25rem;
+    width: 35%;
+
+    @media (max-width: v.$tablet) {
+      width: 100%;
+    }
+
+    &-info {
+      display: flex;
+      flex-direction: column;
+      font-size: v.$textSize;
+      gap: 0.5rem;
+      line-height: 1.2rem;
+      padding: 1rem;
+      text-align: left;
+
+      @media (max-width: v.$tablet) {
+        flex-direction: row;
+        justify-content: space-around;
+      }
+
+      &-date,
+      &-location {
+        align-items: center;
+        display: flex;
+        gap: 1rem;
+
+        .icon {
+          font-size: 1.4rem;
+        }
+
+        span {
+          font-weight: 600;
+        }
+      }
+    }
+
+    .map-container {
+      height: 29vh;
+      width: 100%;
+
+      @media (max-width: v.$tablet) {
+        // important was the only way to override the inline style
+        height: 34vh !important;
+      }
+    }
+  }
+}

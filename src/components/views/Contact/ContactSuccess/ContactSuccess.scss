@@ -1,0 +1,46 @@
+@use '/src/styles/variables' as v;
+
+.ContactSuccess {
+  background-color: v.$secondaryColor;
+  border-radius: v.$borderRadius;
+  border: 1px solid v.$secondaryColor;
+  height: 30rem;
+  left: 5%;
+  padding-top: 3rem;
+  position: absolute;
+  top: 10rem;
+  width: 90%;
+  z-index: 1001;
+
+  @media (max-width: v.$tablet) {
+    height: 40rem;
+  }
+
+  &-message {
+    color: v.$textColor;
+    font-size: 1.75rem;
+    font-weight: 500;
+    line-height: 2ch;
+    margin: 1rem auto 12rem auto;
+    padding: 1rem;
+    text-align: center;
+    width: 70%;
+  }
+
+  &-button {
+    background-color: v.$primaryColor;
+    border: none;
+    border-radius: v.$borderRadius;
+    color: v.$textColor;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 1rem auto;
+    padding: 0.75rem 1rem;
+    text-align: center;
+    width: 50%;
+
+    &:hover {
+      background-color: v.$primaryColorDark;
+    }
+  }
+}

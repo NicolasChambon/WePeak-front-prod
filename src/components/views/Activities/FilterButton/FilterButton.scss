@@ -1,0 +1,62 @@
+@use '/src/styles/variables' as v;
+
+.FilterButton {
+  position: relative;
+  &-button {
+    display: flex;
+    background-color: v.$secondaryColor;
+    border: solid 1px v.$secondaryColorDark;
+    border-radius: v.$borderRadius;
+    color: v.$textColor;
+    justify-content: space-between;
+    font-size: calc(v.$textSize * 0.8);
+    font-weight: 600;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    &:hover {
+    }
+
+    &-icon {
+      transition: all 0.25s cubic-bezier(0, 1, 0, 1);
+
+      &.show {
+        transform: rotate(180deg);
+        transition: all 0.25s cubic-bezier(1, 0, 1, 0);
+      }
+    }
+  }
+
+  &-dropdown {
+    position: absolute;
+    cursor: pointer;
+    top: 110%;
+    background-color: v.$secondaryColorLight;
+    border-radius: v.$borderRadius;
+    max-height: 0;
+    overflow-y: hidden;
+    min-width: 100%;
+    width: auto;
+    z-index: 9999;
+    transition: all 0.5s cubic-bezier(0, 1, 0, 1);
+
+    &.show {
+      height: auto;
+      max-height: 9999px;
+      transition: all 0.5s cubic-bezier(1, 0, 1, 0);
+    }
+
+    &-option {
+      font-size: calc(v.$textSize * 0.8);
+      color: v.$textColor;
+      padding: 0.75rem 1rem;
+      text-align: start;
+      transition: all 0.25s cubic-bezier(0, 1, 0, 1);
+
+      &:hover {
+        background-color: v.$accentColor;
+        color: v.$backgroundColor;
+      }
+    }
+  }
+}

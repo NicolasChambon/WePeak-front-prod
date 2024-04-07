@@ -1,0 +1,92 @@
+@use '/src/styles/variables' as v;
+
+.Hero {
+  width: 100vw;
+  height: 85dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &-content {
+    height: 45%;
+    width: 40%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+
+    &-description {
+      font-size: v.$textSize;
+      font-weight: 400;
+      line-height: 2ch;
+      margin-bottom: 1rem;
+    }
+
+    &-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+  }
+
+  &-gallery {
+    width: 100%;
+    height: 55%;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    overflow: hidden;
+
+    &-image {
+      width: 275px;
+      height: 275px;
+      object-fit: cover;
+      border-radius: v.$borderRadius;
+
+      &:nth-child(odd) {
+        align-self: flex-start;
+      }
+
+      &:nth-child(even) {
+        align-self: flex-end;
+      }
+    }
+  }
+}
+
+/* Media Queries */
+
+@media (max-width: v.$tablet) {
+  .Hero {
+    &-content {
+      width: 80%;
+    }
+
+    &-gallery {
+      height: 50%;
+      &-image {
+        width: 250px;
+        height: 250px;
+      }
+    }
+  }
+
+  @media (max-width: v.$mobile) {
+    .Hero {
+      &-content {
+        width: 90%;
+
+        &-title {
+          font-size: 2rem;
+        }
+      }
+    }
+  }
+}

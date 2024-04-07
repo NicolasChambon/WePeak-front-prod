@@ -1,0 +1,85 @@
+@use '/src/styles/variables' as v;
+
+.Error404 {
+  display: flex;
+
+  &-imgContainer {
+    height: calc(100vh - (4rem));
+    overflow: hidden;
+    width: 50%;
+
+    @media (max-width: v.$tablet) {
+      width: 100%;
+    }
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+
+    @media (max-width: v.$tablet) {
+      position: absolute;
+      top: 7.5rem;
+      width: 100%;
+    }
+
+    &-title {
+      color: v.$textColor;
+      font-size: 8rem;
+      font-weight: 600;
+      margin-bottom: 3rem;
+
+      @media (max-width: v.$tablet) {
+        font-size: 6rem;
+        margin-bottom: 1.5rem;
+      }
+    }
+
+    &-subtitle {
+      color: v.$textColor;
+      font-size: 1.5rem;
+      line-height: 2ch;
+      margin-bottom: 3rem;
+
+      @media (max-width: v.$tablet) {
+        margin-bottom: 1.5rem;
+      }
+    }
+
+    &-text {
+      color: v.$textColorLight;
+      font-weight: 600;
+      line-height: 2ch;
+      margin: 0 auto 2rem auto;
+      width: 50%;
+
+      @media (max-width: v.$tablet) {
+        color: v.$textColor;
+      }
+    }
+
+    &-homeBtn {
+      background-color: v.$accentColor;
+      border: 1px solid v.$accentColorDark;
+      border-radius: v.$borderRadius;
+      font-family: v.$textFont;
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0 auto 2rem auto;
+      padding: 1rem 2rem;
+      width: 13rem;
+
+      &:hover {
+        background-color: v.$accentColorDark;
+      }
+    }
+  }
+}

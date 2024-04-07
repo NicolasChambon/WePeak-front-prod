@@ -1,0 +1,12 @@
+@use '/src/styles/variables' as v;
+
+.ContactErrors {
+  background-color: rgb(224, 199, 199);
+  border-radius: v.$borderRadius;
+  color: red;
+  font-weight: 500;
+  margin: 1rem auto;
+  padding: 1rem;
+  text-align: center;
+  width: 95%;
+}

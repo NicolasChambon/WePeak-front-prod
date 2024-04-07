@@ -1,0 +1,12 @@
+@use '/src/styles/variables' as v;
+
+.Home {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+  margin-bottom: 5rem;
+  overflow-x: hidden;
+}

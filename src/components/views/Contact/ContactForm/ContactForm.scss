@@ -1,0 +1,81 @@
+@use '/src/styles/variables' as v;
+
+.ContactForm {
+  background-color: v.$primaryColor;
+  border-radius: v.$borderRadius;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  font-size: v.$textSize;
+  gap: 1.2rem;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    width: 47.5%;
+
+    @media (max-width: v.$tablet) {
+      width: 100%;
+    }
+
+    label {
+      color: v.$textColor;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      text-align: left;
+    }
+
+    input,
+    textarea {
+      background-color: v.$backgroundColor;
+      border: v.$backgroundColorDark 1px solid;
+      border-radius: v.$borderRadius;
+      color: v.$textColor;
+      font-family: v.$textFont;
+      font-size: v.$textSize;
+      padding: 0.5rem;
+
+      &:hover {
+        border: v.$primaryColor 1px solid;
+      }
+
+      &::placeholder {
+        color: v.$secondaryColorDark;
+      }
+    }
+
+    &.ContactForm-message {
+      width: 100%;
+
+      textarea {
+        height: 5rem;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+
+  &-send {
+    background-color: v.$accentColorDark;
+    border: none;
+    border-radius: v.$borderRadius;
+    color: v.$backgroundColor;
+    font-family: v.$textFont;
+    font-size: v.$textSize;
+    padding: 0.75rem;
+    width: 30%;
+
+    @media (max-width: v.$mobile) {
+      width: 40%;
+    }
+
+    &:hover {
+      background-color: v.$accentColor;
+    }
+  }
+}

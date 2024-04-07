@@ -1,0 +1,50 @@
+@use '/src/styles/variables' as v;
+
+.Activities {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: auto;
+  padding: 3rem 0;
+  width: 80%;
+
+  &-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: start;
+    width: 100%;
+  }
+
+  &-filters {
+    display: flex;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    align-self: flex-start;
+    flex-wrap: wrap;
+  }
+
+  &-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .Button {
+    width: fit-content;
+  }
+}
+@media (max-width: v.$tablet) {
+  .Activities {
+    &-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+@media (max-width: v.$mobile) {
+  .Activities {
+    &-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}

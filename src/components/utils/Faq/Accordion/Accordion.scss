@@ -1,0 +1,52 @@
+@use '/src/styles/variables' as v;
+
+.Accordion {
+  display: flex;
+  border: solid 1px v.$secondaryColor;
+  border-radius: calc(v.$borderRadius / 2);
+  flex-direction: column;
+  padding: 0.5rem 1rem;
+  text-align: start;
+  width: 100%;
+
+  &-question {
+    cursor: pointer;
+    display: flex;
+    padding: 0.5rem 0;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+
+    &-title {
+      font-weight: 500;
+      font-size: calc(v.$textSize * 1.15);
+      line-height: 2ch;
+      width: 90%;
+    }
+
+    &-icon {
+      font-size: 1rem;
+      transition: transform 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+      &.show {
+        transform: rotate(135deg);
+      }
+    }
+  }
+
+  &-answer {
+    max-height: 0;
+    overflow: hidden;
+    font-size: v.$textSize;
+    color: #454648;
+    font-weight: 400;
+    line-height: 2ch;
+    transition: all 0.5s cubic-bezier(0, 1, 0, 1);
+
+    &.show {
+      height: auto;
+      max-height: 9999px;
+      transition: all 0.5s cubic-bezier(1, 0, 1, 0);
+    }
+  }
+}

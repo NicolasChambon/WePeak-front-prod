@@ -1,0 +1,54 @@
+@use '/src/styles/variables' as v;
+
+.ActivityHeader {
+  border-bottom: solid 1px v.$secondaryColorLight;
+  margin-bottom: 1.5rem;
+  padding: 0 1.5rem 1rem 1.5rem;
+
+  &-name {
+    color: v.$textColor;
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+    font-family: v.$titleFont;
+    font-weight: 700;
+  }
+
+  &-sport {
+    color: v.$textColor;
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+    font-family: v.$titleFont;
+    font-weight: 600;
+  }
+
+  &-host {
+    align-items: center;
+    display: flex;
+    gap: 1.5rem;
+
+    &-imgContainer {
+      border: v.$backgroundColorDark solid 1px;
+      border-radius: 50%;
+      height: 3.3rem;
+      overflow: hidden;
+      width: 3.3rem;
+
+      img {
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    &-by {
+      display: flex;
+      flex-direction: column;
+      font-size: v.$textSize;
+      gap: 0.5rem;
+
+      &-name {
+        color: v.$textColor;
+        font-weight: 700;
+      }
+    }
+  }
+}

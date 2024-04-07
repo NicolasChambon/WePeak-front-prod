@@ -1,0 +1,64 @@
+@use '/src/styles/variables' as v;
+
+.ActivityGrid {
+  min-height: 100dvh;
+  width: 80%;
+
+  &-top {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 0;
+
+    &-title {
+      font-size: 1.75rem;
+      font-weight: 600;
+      text-align: start;
+    }
+
+    &-link {
+      display: flex;
+      align-items: center;
+      background-color: v.$secondaryColorLight;
+      border: solid 1px v.$secondaryColor;
+      border-radius: calc(v.$borderRadius / 5);
+      font-size: 0.6rem;
+      font-weight: 600;
+      color: v.$textColor;
+      padding: 0.2rem 0.4rem;
+
+      &:hover {
+        background-color: v.$secondaryColorDark;
+      }
+    }
+  }
+
+  &-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: v.$tablet) {
+  .ActivityGrid {
+    &-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: v.$mobile) {
+    .ActivityGrid {
+      &-grid {
+        grid-template-columns: 1fr;
+      }
+
+      &-top {
+        &-title {
+          font-size: 1rem;
+        }
+
+        &-link {
+          font-size: 0.5rem;
+        }
+      }
+    }
+  }
+}
