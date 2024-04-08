@@ -19,7 +19,7 @@ const activityMiddleware = (store) => (next) => (action) => {
       // We verify if the action contains coordinates because of async fetch it can be too soon have them
       if (action.coordinates.lat) {
         fetch(
-          `http://melvinleroux-server.eddi.cloud/api/v1/activities/page/1/${action.coordinates.lat}/${action.coordinates.lng}`
+          `https://melvinleroux-server.eddi.cloud/api/v1/activities/page/1/${action.coordinates.lat}/${action.coordinates.lng}`
         )
           .then((response) => {
             if (!response.ok) {
@@ -55,7 +55,7 @@ const activityMiddleware = (store) => (next) => (action) => {
     case FETCH_ACTIVITIES_FROM_CITY_WITH_FILTER: {
       if (action.lastSearchedCity.coordinates.lat) {
         fetch(
-          `http://melvinleroux-server.eddi.cloud/api/v1/activities/page/1/${action.lastSearchedCity.coordinates.lat}/${action.lastSearchedCity.coordinates.lng}?${action.filterName}=${action.filterValue}`
+          `https://melvinleroux-server.eddi.cloud/api/v1/activities/page/1/${action.lastSearchedCity.coordinates.lat}/${action.lastSearchedCity.coordinates.lng}?${action.filterName}=${action.filterValue}`
         )
           .then((response) => {
             if (!response.ok) {
@@ -85,7 +85,7 @@ const activityMiddleware = (store) => (next) => (action) => {
       console.log(action.lastSearchedCity);
       if (action.lastSearchedCity.coordinates.lat) {
         fetch(
-          `http://melvinleroux-server.eddi.cloud/api/v1/activities/page/1/${action.lastSearchedCity.coordinates.lat}/${action.lastSearchedCity.coordinates.lng}?${action.startDate.label}=${action.startDate.value}&${action.endDate.label}=${action.endDate.value}`
+          `https://melvinleroux-server.eddi.cloud/api/v1/activities/page/1/${action.lastSearchedCity.coordinates.lat}/${action.lastSearchedCity.coordinates.lng}?${action.startDate.label}=${action.startDate.value}&${action.endDate.label}=${action.endDate.value}`
         )
           .then((response) => {
             if (!response.ok) {
@@ -113,7 +113,7 @@ const activityMiddleware = (store) => (next) => (action) => {
     }
     case FETCH_ACTIVITY: {
       fetch(
-        `http://melvinleroux-server.eddi.cloud/api/v1/activities/${action.slug}`
+        `https://melvinleroux-server.eddi.cloud/api/v1/activities/${action.slug}`
       )
         .then((response) => {
           if (!response.ok) {
