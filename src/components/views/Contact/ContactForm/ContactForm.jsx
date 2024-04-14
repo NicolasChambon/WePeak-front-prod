@@ -1,5 +1,6 @@
 // Import necessary librairies
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 // Import actions
 import {
@@ -11,6 +12,7 @@ import {
 import './ContactForm.scss';
 
 const ContactForm = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const nameInput = useSelector((state) => state.contact.nameInput);
   const emailInput = useSelector((state) => state.contact.emailInput);
@@ -23,7 +25,7 @@ const ContactForm = () => {
       className="ContactForm"
       onSubmit={(e) => {
         e.preventDefault();
-        dispatch(postContactForm());
+        dispatch(postContactForm(navigate));
       }}
     >
       <div className="Contact-form-name">
@@ -47,7 +49,7 @@ const ContactForm = () => {
           type="email"
           id="email"
           name="email"
-          placeholder="example@email.com"
+          placeholder="exemple@email.com"
           value={emailInput}
           onChange={(e) => {
             dispatch(changeContactInput(e.target.value, 'emailInput'));

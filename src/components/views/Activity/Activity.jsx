@@ -56,6 +56,7 @@ const Activity = () => {
         userId={activity.createdBy.id}
         userPicture={activity.createdBy.thumbnail}
         userName={activity.createdBy.pseudo}
+        userThumbnail={activity.createdBy.thumbnail}
       />
       <ActivityIllustration
         picture={activity.thumbnail}
@@ -68,6 +69,7 @@ const Activity = () => {
         }
         lat={activity.lat}
         lng={activity.lng}
+        thumbnail={activity.thumbnail}
       />
       <ActivityDetailApply description={activity.description} />
       <ActivityPeople

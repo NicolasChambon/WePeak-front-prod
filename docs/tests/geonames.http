@@ -1,1 +1,1 @@
-GET http://api.geonames.org/postalCodeSearchJSON?placename_startsWith=Mars&country=FR&username=nicolaschambon
+GET http://api.geonames.org/postalCodeSearchJSON?placename_startsWith=Mars&country=FR&username=pommito

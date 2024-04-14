@@ -1,7 +1,6 @@
 export const CHANGE_CONTACT_INPUT = 'CHANGE_CONTACT_INPUT';
 export const POST_CONTACT_FORM = 'POST_CONTACT_FORM';
 export const SET_ERROR_MESSAGE = 'SET_ERROR_MESSAGE';
-export const SET_SUCCESS_MESSAGE = 'SET_SUCCESS_MESSAGE';
 export const RESET_CONTACT_FORM = 'RESET_CONTACT_FORM';
 
 export const changeContactInput = (value, identifier) => ({
@@ -10,17 +9,13 @@ export const changeContactInput = (value, identifier) => ({
   identifier,
 });
 
-export const postContactForm = () => ({
+export const postContactForm = (navigate) => ({
   type: POST_CONTACT_FORM,
+  navigate,
 });
 
 export const setErrorMessage = (message) => ({
   type: SET_ERROR_MESSAGE,
-  message,
-});
-
-export const setSuccessMessage = (message) => ({
-  type: SET_SUCCESS_MESSAGE,
   message,
 });
 

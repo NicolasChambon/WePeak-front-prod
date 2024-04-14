@@ -82,7 +82,6 @@ const activityMiddleware = (store) => (next) => (action) => {
       break;
     }
     case FETCH_ACTIVITIES_FROM_CITY_WITH_DATES: {
-      console.log(action.lastSearchedCity);
       if (action.lastSearchedCity.coordinates.lat) {
         fetch(
           `https://melvinleroux-server.eddi.cloud/api/v1/activities/page/1/${action.lastSearchedCity.coordinates.lat}/${action.lastSearchedCity.coordinates.lng}?${action.startDate.label}=${action.startDate.value}&${action.endDate.label}=${action.endDate.value}`

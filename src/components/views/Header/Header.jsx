@@ -2,10 +2,16 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { LuSearch, LuSearchX } from 'react-icons/lu';
-import { FaRegMessage } from 'react-icons/fa6';
+import { LuSearch, LuSearchX, LuUser, LuLogOut } from 'react-icons/lu';
+import {
+  IoIosAddCircleOutline,
+  IoIosArrowDown,
+  IoIosArrowUp,
+} from 'react-icons/io';
 
+// Import images
 import Logo_BW from '../../../assets/Logo_BW.svg';
+import avatar from '../../../assets/avatar.svg';
 
 // Import actions
 import {
@@ -14,15 +20,25 @@ import {
   resetSearch,
 } from '../../../actions/searchActions';
 import { fetchActivitiesFromCity } from '../../../actions/activityActions';
+import { logout } from '../../../actions/userActions';
 
 // Import stylesheet
 import './Header.scss';
 
 const Header = () => {
-  const isLogged = false; // To remove at API plug
   const cityList = useSelector((state) => state.search.cityList);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const loggedData = useSelector((state) => state.user.loggedData);
+  const isLogged = loggedData.token !== undefined;
+
+  // Set default user picture
+  let userPictureUrl = avatar;
+  // If user is logged and has a thumbnail, we set userPictureUrl with the thumbnail
+  if (isLogged && loggedData.user.thumbnail) {
+    userPictureUrl = loggedData.user.thumbnail;
+  }
 
   // THIS CODE-BLOCK HANDLE SEARCH INPUT WITH CITIES SUGGESTIONS
   const input = useSelector((state) => state.search.input);
@@ -47,18 +63,20 @@ const Header = () => {
   };
   // THIS CODE-BLOCK HANDLE REMOVING OF CITIES SUGGESTIONS WHEN CLICKING OUTSIDE
   useEffect(() => {
-    const handleClickOutside = (e) => {
-      // If click is outside the search input, we reset the city list suggestion
-      if (!e.target.closest('.Header-form-search')) {
-        dispatch(resetSearch());
-      }
-    };
-    // Event listener on click
-    document.addEventListener('click', handleClickOutside);
-    // Clean event listener on component unmount
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
+    if (cityList.length < 20 && cityList.length > 0) {
+      const handleClickOutside = (e) => {
+        // If click is outside the search input, we reset the city list suggestion
+        if (!e.target.closest('.Header-form-search')) {
+          dispatch(resetSearch());
+        }
+      };
+      // Event listener on click
+      document.addEventListener('click', handleClickOutside);
+      // Clean event listener on component unmount
+      return () => {
+        document.removeEventListener('click', handleClickOutside);
+      };
+    }
   });
 
   // THIS CODE-BLOCK HANDLE HEADER BOTTOM SHADOW
@@ -93,6 +111,18 @@ const Header = () => {
       window.removeEventListener('resize', handleResize);
     };
   });
+
+  // THIS CODE-BLOCK HANDLE LOGOUT
+  const handleClickLogoutBtn = () => {
+    dispatch(logout());
+    navigate('/');
+  };
+
+  // THIS CODE-BLOCK HANDLE PROFILE DROPDOWN
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const handleProfileClick = () => {
+    setIsProfileOpen(!isProfileOpen);
+  };
 
   return (
     <header className={`Header ${isScrolled ? 'scrolled' : ''}`}>
@@ -191,25 +221,54 @@ const Header = () => {
           </ul>
         )}
         {isLogged && (
-          <ul className="Header-nav-links">
-            <li className="Header-nav-link messages">
-              <NavLink to="/messages">
-                <FaRegMessage className="messages-icon" />
+          <div className="Header-nav-links">
+            <div className="Header-nav-link create">
+              <NavLink to="/activities/create">
+                <IoIosAddCircleOutline className="create-icon" />
+                <p>Créer une activité</p>
               </NavLink>
-            </li>
-            <li className="Header-nav-link profile">
-              <NavLink to="/profile">
-                <div className="profile-picture-container">
-                  <img
-                    src="https://ca.slack-edge.com/T060RPZMDH6-U061SDTH4TF-c278721b6e6d-512"
-                    alt=""
-                  />
-                </div>
-              </NavLink>
-            </li>
-          </ul>
+            </div>
+            <button
+              type="button"
+              className="Header-nav-link profile"
+              onClick={() => {
+                handleProfileClick();
+              }}
+            >
+              <div className="profile-picture-container">
+                <img src={userPictureUrl} alt="" />
+              </div>
+              {isProfileOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
+            </button>
+          </div>
         )}
       </nav>
+      {isLogged && (
+        <div
+          className={isProfileOpen ? 'Header-profile' : 'Header-profile closed'}
+        >
+          <Link
+            to="/profile"
+            className="Header-profile-profileLink"
+            onClick={() => {
+              handleProfileClick();
+            }}
+          >
+            <LuUser />
+            <p>Afficher mon profil</p>
+          </Link>
+          <button
+            type="button"
+            className="Header-profile-logout"
+            onClick={() => {
+              handleClickLogoutBtn();
+            }}
+          >
+            <LuLogOut />
+            <p>Se déconnecter</p>
+          </button>
+        </div>
+      )}
     </header>
   );
 };

@@ -23,7 +23,7 @@
     flex-wrap: wrap;
   }
 
-  @media (max-width: 390px) {
+  @media (max-width: 405px) {
     padding: 0.2rem 0.5rem;
   }
 
@@ -140,11 +140,6 @@
         color: v.$textColor;
         font-size: 1.25rem;
       }
-
-      // commented while submit button is not working
-      // &:hover {
-      //   background-color: v.$primaryColorDark;
-      // }
     }
   }
 
@@ -186,9 +181,10 @@
         }
       }
 
-      .messages,
+      .create,
       .profile {
-        color: v.$textColor;
+        color: v.$textColorLight;
+        transition: color 0.5s ease;
 
         &-picture-container {
           border: v.$backgroundColorDark solid 1px;
@@ -200,21 +196,76 @@
           img {
             height: 100%;
             width: 100%;
+            object-fit: cover;
           }
         }
 
         &:hover {
-          color: v.$secondaryColorDark;
+          color: v.$textColor;
         }
       }
 
-      .messages {
-        margin-top: 0.1rem;
-
+      .create {
         &-icon {
           font-size: 1.5rem;
         }
+
+        align-items: center;
+        display: flex;
+        gap: 0.3rem;
       }
+
+      .profile {
+        align-items: center;
+        background-color: v.$backgroundColor;
+        border: none;
+        display: flex;
+        font-size: 1.25rem;
+        gap: 0.25rem;
+      }
+    }
+  }
+
+  &-profile {
+    background-color: v.$backgroundColor;
+    border: 1px solid v.$backgroundColorDark;
+    border-radius: calc(v.$borderRadius * 0.5);
+    color: v.$textColorLight;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0 0.15rem;
+    position: absolute;
+    right: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 2px 0 4px rgba(0, 0, 0, 0.1),
+      -2px 0 4px rgba(0, 0, 0, 0.1);
+    top: 4.5rem;
+
+    &-profileLink,
+    &-logout {
+      align-items: center;
+      display: flex;
+      font-size: v.$textSize;
+      gap: 1rem;
+      justify-content: space-between;
+      padding: 0.5rem 0.75rem;
+
+      &:hover {
+        color: v.$textColor;
+      }
+    }
+
+    &-logout {
+      background-color: v.$backgroundColor;
+      border: none;
+      border-top: 1px solid v.$secondaryColorLight;
+      color: v.$textColorLight;
+      cursor: pointer;
+      font-family: v.$textFont;
+    }
+
+    &.closed {
+      display: none;
     }
   }
 }

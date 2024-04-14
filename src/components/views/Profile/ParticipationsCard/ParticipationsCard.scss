@@ -1,0 +1,87 @@
+@use '/src/styles/variables' as v;
+
+.ParticipationsCard {
+  background-color: v.$backgroundColorDark;
+  border: 1px solid v.$secondaryColorLight;
+  border-radius: v.$borderRadius;
+  padding: 1.25rem;
+  text-align: left;
+
+  &-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  &-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+
+    &-item {
+      align-items: center;
+      background-color: v.$secondaryColor;
+      border-radius: v.$borderRadius;
+      display: flex;
+      font-size: v.$textSize;
+      gap: 1rem;
+      padding: 0.75rem;
+
+      @media (max-width: v.$tablet) {
+        flex-direction: column;
+        text-align: center;
+        width: 100%;
+      }
+
+      &-imgContainer {
+        border-radius: calc(v.$borderRadius * 0.5);
+        height: 5rem;
+        overflow: hidden;
+        width: 7rem;
+
+        @media (max-width: v.$tablet) {
+          width: 12rem;
+        }
+        @media (max-width: 720px) {
+          height: 10rem;
+          width: 18rem;
+          max-width: 100%;
+        }
+
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+
+      &-content {
+        &-name {
+          font-size: 1rem;
+          font-weight: 500;
+          margin-bottom: 0.25rem;
+        }
+        &-sport {
+          font-size: 0.9rem;
+          font-weight: 500;
+          margin-bottom: 0.75rem;
+        }
+      }
+    }
+  }
+
+  &-more {
+    background-color: v.$backgroundColor;
+    border: 1px solid v.$secondaryColorLight;
+    border-radius: v.$borderRadius;
+    display: flex;
+    font-size: 1.5rem;
+    margin: 1rem auto 0 auto;
+    transition: background-color 0.25s;
+
+    &:hover {
+      background-color: v.$secondaryColorLight;
+    }
+  }
+}

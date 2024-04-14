@@ -1,11 +1,24 @@
 import {
   HANDLE_USER_POSITION,
   HANDLE_USER_POSITION_NAME,
+  CHANGE_LOGIN_INPUT,
+  HANDLE_SUCCESS_LOGIN,
+  SET_LOGIN_ERROR_MESSAGE,
+  LOGOUT,
+  RESET_LOGIN_FORM,
+  HANDLE_FETCH_CURRENT_USER_WITH_ID,
+  HANDLE_FETCH_VISITED_USER_WITH_ID,
 } from '../actions/userActions';
 
 export const initialState = {
   userPosition: {},
   userPositionName: '',
+  emailInputLogin: '',
+  passwordInputLogin: '',
+  loggedData: {},
+  loginErrorMessage: '',
+  currentUser: {},
+  visitedUser: {},
 };
 
 const userReducer = (state = initialState, action = {}) => {
@@ -19,6 +32,45 @@ const userReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         userPositionName: action.userPositionName,
+      };
+    case CHANGE_LOGIN_INPUT:
+      return {
+        ...state,
+        [action.identifier]: action.value,
+      };
+    case HANDLE_SUCCESS_LOGIN:
+      return {
+        ...state,
+        loggedData: action.loggedData,
+        passwordInputLogin: '',
+        emailInputLogin: '',
+        loginErrorMessage: '',
+      };
+    case SET_LOGIN_ERROR_MESSAGE:
+      return {
+        ...state,
+        loginErrorMessage: action.message,
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        loggedData: {},
+      };
+    case RESET_LOGIN_FORM:
+      return {
+        ...state,
+        emailInputLogin: '',
+        passwordInputLogin: '',
+      };
+    case HANDLE_FETCH_CURRENT_USER_WITH_ID:
+      return {
+        ...state,
+        currentUser: action.user,
+      };
+    case HANDLE_FETCH_VISITED_USER_WITH_ID:
+      return {
+        ...state,
+        visitedUser: action.user,
       };
     default:
       return state;

@@ -15,6 +15,7 @@ const ActivityIllustration = ({
   adressCity,
   lat,
   lng,
+  thumbnail,
 }) => {
   // allow to change the view of the map if user change activity page
   // then we integrate <ChangeView /> component in the map in jsx part
@@ -27,11 +28,7 @@ const ActivityIllustration = ({
   return (
     <div className="ActivityIllustration">
       <div className="ActivityIllustration-imgContainer">
-        {/* TODO Dynamisation of activity picture when available in API */}
-        <img
-          src="https://idata.over-blog.com/0/08/49/95/Ski-de-Rando-2011/P1000329.jpg"
-          alt=""
-        />
+        <img src={thumbnail} alt="" />
       </div>
 
       <div className="ActivityIllustration-mapCard">
@@ -76,12 +73,17 @@ const ActivityIllustration = ({
 
 ActivityIllustration.propTypes = {
   date: PropTypes.string.isRequired,
-  adressNumber: PropTypes.string.isRequired,
+  adressNumber: PropTypes.string,
   adressRoad: PropTypes.string.isRequired,
   adressPostcode: PropTypes.string.isRequired,
   adressCity: PropTypes.string.isRequired,
   lat: PropTypes.number.isRequired,
   lng: PropTypes.number.isRequired,
+  thumbnail: PropTypes.string.isRequired,
+};
+
+ActivityIllustration.defaultProps = {
+  adressNumber: '',
 };
 
 export default ActivityIllustration;

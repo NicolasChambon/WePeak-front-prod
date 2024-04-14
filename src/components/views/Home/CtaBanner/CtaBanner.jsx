@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 
-import image from '../../../../assets/images/Home_hero_6.avif';
-
 import './CtaBanner.scss';
 import Button from '../../../utils/Button/Button';
+
+import image from '../../../../assets/images/Home_hero_6.avif';
 
 const CtaBanner = () => {
   return (

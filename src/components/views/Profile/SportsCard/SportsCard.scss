@@ -1,0 +1,31 @@
+@use '/src/styles/variables' as v;
+
+.SportsCard {
+  background-color: v.$backgroundColorDark;
+  border: 1px solid v.$secondaryColorLight;
+  border-radius: v.$borderRadius;
+  padding: 1.25rem;
+  text-align: left;
+
+  &-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  &-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: flex-start;
+
+    &-sport {
+      background-color: v.$secondaryColor;
+      border-radius: calc(v.$borderRadius * 0.5);
+      color: v.$textColor;
+      padding: 0.5rem;
+      font-size: v.$textSize;
+      font-weight: 500;
+    }
+  }
+}

@@ -29,8 +29,8 @@ export const handleFetchCitiesSearch = (data) => {
         postalCode: fetchResult.postalCode,
         placeName: fetchResult.placeName,
         // replace points by commas in lat and lng to match the format of the API
-        lat: fetchResult.lat.toString().replace('.', ','),
-        lng: fetchResult.lng.toString().replace('.', ','),
+        lat: fetchResult.lat.toString(),
+        lng: fetchResult.lng.toString(),
       });
     }
     return acc;

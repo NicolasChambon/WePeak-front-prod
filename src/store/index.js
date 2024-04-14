@@ -7,13 +7,15 @@ import searchMiddleware from '../middleware/searchMiddleware';
 import activityMiddleware from '../middleware/activityMiddleware';
 import contactMiddleware from '../middleware/contactMiddleware';
 import userMiddleware from '../middleware/userMiddleware';
+import registerMiddleware from '../middleware/registerMiddleware';
 
 const enhancers = composeWithDevTools(
   applyMiddleware(
     searchMiddleware,
     activityMiddleware,
     contactMiddleware,
-    userMiddleware
+    userMiddleware,
+    registerMiddleware
   )
 );
 

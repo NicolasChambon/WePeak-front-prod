@@ -1,0 +1,48 @@
+@use '/src/styles/variables' as v;
+
+.EditProfile {
+  align-items: center;
+  background-color: v.$accentColorLight;
+  border-radius: v.$borderRadius;
+  display: flex;
+  gap: 1rem;
+  padding: 1.25rem;
+
+  &-imgContainer {
+    border-radius: 50%;
+    height: 3.3rem;
+    width: 3.3rem;
+    overflow: hidden;
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &-nameAndEdit {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    text-align: left;
+
+    &-name {
+      font-weight: 600;
+    }
+
+    &-edit {
+      align-items: end;
+      display: flex;
+      flex-direction: row;
+      gap: 0.25rem;
+      padding: 0.25rem 0.5rem 0.25rem 0;
+
+      p {
+        font-size: v.$textSize;
+        font-weight: 500;
+        text-decoration: underline;
+      }
+    }
+  }
+}

@@ -3,7 +3,18 @@ import {
   handleUserPosition,
   GET_USER_POSITION_NAME,
   handleUserPositionName,
+  POST_LOGIN_FORM,
+  handleSuccessLogin,
+  setLoginErrorMessage,
+  resetLoginForm,
+  FETCH_USER_WITH_ID,
+  handleFetchCurrentUserWithId,
+  handleFetchVisitedUserWithId,
 } from '../actions/userActions';
+import {
+  writePopUpMessage,
+  removePopUpMessage,
+} from '../actions/globalActions';
 
 const userMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -28,7 +39,7 @@ const userMiddleware = (store) => (next) => (action) => {
     case GET_USER_POSITION_NAME: {
       const { userPosition } = store.getState().user;
       fetch(
-        `https://secure.geonames.org/findNearbyPostalCodesJSON?lat=${userPosition.lat}&lng=${userPosition.lng}&username=nicolaschambon`
+        `https://secure.geonames.org/findNearbyPostalCodesJSON?lat=${userPosition.lat}&lng=${userPosition.lng}&username=pommito`
       )
         .then((response) => {
           if (!response.ok) {
@@ -38,6 +49,86 @@ const userMiddleware = (store) => (next) => (action) => {
         })
         .then((data) => {
           store.dispatch(handleUserPositionName(data.postalCodes[0].placeName));
+        })
+        .catch((error) => {
+          console.error(
+            'There has been a problem with your fetch operation:',
+            error
+          );
+        })
+        .finally(() => {});
+      break;
+    }
+    case POST_LOGIN_FORM: {
+      const { emailInputLogin, passwordInputLogin } = store.getState().user;
+      fetch('https://melvinleroux-server.eddi.cloud/api/v1/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: emailInputLogin,
+          password: passwordInputLogin,
+        }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            // If the response is not ok, we parse the response body as JSON.
+            return response.json().then((error) => {
+              // throw is used to stop the promise chain and trigger the catch block.
+              // if error.errors (which normaly contains specific messages) is not defined, we throw a generic error message.
+              throw new Error(error.error || 'Network response was not ok');
+            });
+          }
+          return response.json();
+        })
+        .then((data) => {
+          store.dispatch(handleSuccessLogin(data));
+          store.dispatch(
+            writePopUpMessage(
+              `Bienvenue ${data.user.firstname} ${data.user.lastname} !`
+            )
+          );
+          setTimeout(() => {
+            store.dispatch(removePopUpMessage());
+          }, 5000);
+          action.navigate('/');
+          store.dispatch(resetLoginForm());
+          store.dispatch(setLoginErrorMessage(''));
+          action.navigate('/');
+        })
+        .catch((error) => {
+          console.error(
+            'There has been a problem with your fetch operation:',
+            error
+          );
+          store.dispatch(setLoginErrorMessage(error.message));
+        })
+        .finally(() => {});
+      break;
+    }
+    case FETCH_USER_WITH_ID: {
+      fetch(
+        `https://melvinleroux-server.eddi.cloud/api/v1/users/${action.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${store.getState().user.loggedData.token}`,
+          },
+        }
+      )
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          if (action.specifier === 'visited') {
+            store.dispatch(handleFetchVisitedUserWithId(data));
+          }
+          if (action.specifier === 'current') {
+            store.dispatch(handleFetchCurrentUserWithId(data));
+          }
         })
         .catch((error) => {
           console.error(

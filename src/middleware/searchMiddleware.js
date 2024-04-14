@@ -9,7 +9,7 @@ const searchMiddleware = (store) => (next) => (action) => {
       const inputSearch = store.getState().search.input;
 
       fetch(
-        `https://secure.geonames.org/postalCodeSearchJSON?placename_startsWith=${inputSearch}&country=FR&username=nicolaschambon`
+        `https://secure.geonames.org/postalCodeSearchJSON?placename_startsWith=${inputSearch}&country=FR&username=pommito`
       )
         .then((response) => {
           if (!response.ok) {

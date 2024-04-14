@@ -14,12 +14,20 @@ const Error404 = () => {
     window.scrollTo(0, 0);
   });
 
+  const images = [
+    image_404_1,
+    image_404_2,
+    image_404_3,
+    image_404_4,
+    image_404_5,
+  ];
   const imgNumber = Math.floor(Math.random() * 5) + 1;
+  const selectedImage = images[imgNumber - 1];
 
   return (
     <main className="Error404">
       <div className="Error404-imgContainer">
-        <img src={`image_404_${imgNumber}`} alt="" />
+        <img src={selectedImage} alt="" />
       </div>
       <div className="Error404-right">
         <h2 className="Error404-right-title">404</h2>

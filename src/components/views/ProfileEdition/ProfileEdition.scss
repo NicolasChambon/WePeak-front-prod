@@ -1,0 +1,189 @@
+@use '/src/styles/variables' as v;
+
+.ProfileEdition {
+  margin-bottom: 1.5rem;
+
+  &-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin: 2rem 0rem 1rem 0rem;
+  }
+
+  &-form {
+    background-color: v.$secondaryColorLight;
+    border-radius: v.$borderRadius;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    justify-content: space-around;
+    margin: auto;
+    padding: 1.5rem;
+    width: 70%;
+
+    @media (max-width: v.$mobile) {
+      width: 90%;
+    }
+
+    &-picture {
+      align-items: center;
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      width: 100%;
+
+      @media (max-width: v.$mobile) {
+        flex-direction: column;
+      }
+
+      &-imgContainer {
+        border: 1px solid v.$backgroundColorDark;
+        border-radius: 50%;
+        height: 10rem;
+        overflow: hidden;
+        width: 10rem;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      &-label {
+        align-items: center;
+        background-color: v.$primaryColor;
+        border: v.$primaryColorDark;
+        border-radius: v.$borderRadius;
+        color: v.$backgroundColor;
+        display: flex;
+        font-family: v.$textFont;
+        font-size: v.$textSize;
+        font-weight: 600;
+        height: 2.5rem;
+        padding: 0 1rem;
+
+        &:hover {
+          background-color: v.$primaryColorDark;
+        }
+      }
+
+      &-input {
+        display: none;
+      }
+    }
+
+    &-firstname,
+    &-name,
+    &-email,
+    &-username,
+    &-city,
+    &-birthdate,
+    &-bio,
+    &-oldPassword,
+    &-newPassword,
+    &-confirmNewPassword {
+      display: flex;
+      flex-direction: column;
+      font-size: v.$textSize;
+      font-weight: 600;
+      gap: 0.25rem;
+      text-align: left;
+    }
+
+    &-firstname,
+    &-name,
+    &-username,
+    &-email,
+    &-city,
+    &-birthdate {
+      width: 48.5%;
+      @media (max-width: v.$tablet) {
+        width: 100%;
+      }
+    }
+
+    &-bio {
+      width: 100%;
+    }
+
+    input,
+    textarea {
+      background-color: v.$backgroundColor;
+      border: v.$backgroundColorDark 1px solid;
+      border-radius: v.$borderRadius;
+      color: v.$textColor;
+      font-family: v.$textFont;
+      font-size: v.$textSize;
+      padding: 0.5rem;
+
+      &:hover {
+        border: v.$secondaryColor 1px solid;
+      }
+
+      &::placeholder {
+        color: v.$secondaryColorDark;
+      }
+    }
+
+    textarea {
+      height: 5rem;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &-password {
+      font-size: 1rem;
+      font-weight: 600;
+      text-align: left;
+      width: 100%;
+    }
+
+    &-oldPassword,
+    &-newPassword,
+    &-confirmNewPassword {
+      width: 100%;
+    }
+
+    &-submit {
+      border: none;
+      border-radius: v.$borderRadius;
+      color: v.$backgroundColor;
+      font-family: v.$textFont;
+      font-size: v.$textSize;
+      padding: 0.75rem;
+      width: 30%;
+
+      @media (max-width: v.$tablet) {
+        width: 45%;
+      }
+      @media (max-width: v.$tablet) {
+        font-size: calc(v.$textSize * 0.85);
+      }
+    }
+
+    &-submit {
+      background-color: v.$accentColorDark;
+
+      &:hover {
+        background-color: v.$accentColor;
+      }
+    }
+
+    &-delete {
+      background-color: v.$secondaryColorLight;
+      border: none;
+      color: rgb(211, 29, 29);
+      font-family: v.$textFont;
+      font-size: v.$textSize;
+      font-weight: 300;
+      padding: 0;
+
+      &:hover {
+        color: rgb(136, 31, 31);
+      }
+    }
+  }
+}

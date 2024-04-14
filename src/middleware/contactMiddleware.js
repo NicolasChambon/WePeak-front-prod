@@ -1,8 +1,12 @@
 import {
   POST_CONTACT_FORM,
   setErrorMessage,
-  setSuccessMessage,
+  resetContactForm,
 } from '../actions/contactActions';
+import {
+  writePopUpMessage,
+  removePopUpMessage,
+} from '../actions/globalActions';
 
 const contactMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -31,13 +35,18 @@ const contactMiddleware = (store) => (next) => (action) => {
           }
           return response.json();
         })
-        .then((message) => {
+        .then(() => {
           // Handle here the success case with message to user and redirection
           store.dispatch(
-            setSuccessMessage(
+            writePopUpMessage(
               'Votre message a bien été envoyé ! Merci pour votre intérêt.'
             )
           );
+          setTimeout(() => {
+            store.dispatch(removePopUpMessage());
+          }, 5000);
+          action.navigate('/');
+          store.dispatch(resetContactForm());
           store.dispatch(setErrorMessage(''));
         })
         .catch((error) => {

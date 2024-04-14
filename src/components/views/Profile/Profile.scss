@@ -1,0 +1,53 @@
+@use '/src/styles/variables' as v;
+
+.Profile {
+  display: flex;
+  gap: 2rem;
+  margin: 2rem auto 2rem auto;
+  width: 95%;
+
+  @media (max-width: 720px) {
+    flex-direction: column;
+  }
+
+  &-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 30rem;
+    width: 35%;
+
+    @media (max-width: v.$tablet) {
+      width: 50%;
+    }
+
+    @media (max-width: 720px) {
+      width: 70%;
+      margin: auto;
+    }
+
+    @media (max-width: v.$mobile) {
+      width: 95%;
+    }
+  }
+
+  &-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 65%;
+
+    @media (max-width: v.$tablet) {
+      width: 50%;
+    }
+
+    @media (max-width: 720px) {
+      width: 70%;
+      margin: auto;
+    }
+
+    @media (max-width: v.$mobile) {
+      width: 95%;
+    }
+  }
+}

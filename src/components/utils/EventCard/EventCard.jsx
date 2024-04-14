@@ -4,18 +4,16 @@ import { Link } from 'react-router-dom';
 import { IconContext } from 'react-icons';
 import { FiArrowRight } from 'react-icons/fi';
 
-import image from '../../../assets/images/Home_hero_3.avif';
-
 import './EventCard.scss';
 
-const EventCard = ({ title, date, difficulty, slug }) => {
+const EventCard = ({ title, date, difficulty, slug, sport, thumbnail }) => {
   return (
     <article className="EventCard">
       <Link to={`/activities/${slug}`}>
-        <img src={image} alt="" className="EventCard-image" />
+        <img src={thumbnail} alt="" className="EventCard-image" />
       </Link>
       <div className="EventCard-content">
-        <span className="EventCard-content-category">Lancé de nain</span>
+        <span className="EventCard-content-category">{sport}</span>
         <span className={`EventCard-content-category ${difficulty}`}>
           {difficulty}
         </span>
@@ -43,6 +41,8 @@ EventCard.propTypes = {
   date: PropTypes.string.isRequired,
   difficulty: PropTypes.string.isRequired,
   slug: PropTypes.number.isRequired,
+  sport: PropTypes.string.isRequired,
+  thumbnail: PropTypes.string.isRequired,
 };
 
 export default EventCard;
