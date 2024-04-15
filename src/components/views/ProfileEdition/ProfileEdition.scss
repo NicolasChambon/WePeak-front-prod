@@ -74,7 +74,7 @@
     }
 
     &-firstname,
-    &-name,
+    &-lastname,
     &-email,
     &-username,
     &-city,
@@ -92,7 +92,7 @@
     }
 
     &-firstname,
-    &-name,
+    &-lastname,
     &-username,
     &-email,
     &-city,
@@ -144,6 +144,18 @@
     &-oldPassword,
     &-newPassword,
     &-confirmNewPassword {
+      width: 100%;
+    }
+
+    &-error {
+      background-color: rgb(224, 199, 199);
+      border: 1px solid rgb(167, 39, 39);
+      border-radius: v.$borderRadius;
+      color: rgb(167, 39, 39);
+      font-size: v.$textSize;
+      font-weight: 500;
+      padding: 0.5rem;
+      text-align: center;
       width: 100%;
     }
 

@@ -61,11 +61,12 @@ export const resetLoginForm = () => ({
   type: RESET_LOGIN_FORM,
 });
 
-export const fetchUserWithId = (id, specifier) => ({
+export const fetchUserWithId = (id, specifier, navigate) => ({
   type: FETCH_USER_WITH_ID,
   id,
   // specifier is used to call the good handle function in the middleware
   specifier,
+  navigate,
 });
 
 // Current user is the logged user

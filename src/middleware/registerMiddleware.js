@@ -39,7 +39,8 @@ const registerMiddleware = (store) => (next) => (action) => {
           // Handle here the success case with message to user and redirection
           store.dispatch(
             writePopUpMessage(
-              "Votre demande d'inscription a bien été envoyée. Un email de confirmation vous a été envoyé. Merci pour votre intérêt."
+              "Demande d'inscription réalisée avec succès. Un email de confirmation vous a été envoyé. Merci pour votre intérêt.",
+              'success'
             )
           );
           setTimeout(() => {

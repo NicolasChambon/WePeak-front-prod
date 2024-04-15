@@ -39,7 +39,8 @@ const contactMiddleware = (store) => (next) => (action) => {
           // Handle here the success case with message to user and redirection
           store.dispatch(
             writePopUpMessage(
-              'Votre message a bien été envoyé ! Merci pour votre intérêt.'
+              'Votre message a bien été envoyé ! Merci pour votre intérêt.',
+              'success'
             )
           );
           setTimeout(() => {

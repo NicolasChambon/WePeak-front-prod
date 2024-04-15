@@ -1,9 +1,63 @@
+// Import necessary libraries
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
+// Import actions
+import {
+  changeEditProfileInput,
+  postEditProfileForm,
+  deleteProfile,
+} from '../../../actions/editProfileActions';
+
+// Import stylesheet
 import './ProfileEdition.scss';
 
 const ProfileEdition = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const firstnameInput = useSelector(
+    (state) => state.editProfile.firstnameInput
+  );
+  const lastnameInput = useSelector((state) => state.editProfile.lastnameInput);
+  const usernameInput = useSelector((state) => state.editProfile.usernameInput);
+  const emailInput = useSelector((state) => state.editProfile.emailInput);
+  const cityInput = useSelector((state) => state.editProfile.cityInput);
+  const birthdateInput = useSelector(
+    (state) => state.editProfile.birthdateInput
+  );
+  const bioInput = useSelector((state) => state.editProfile.bioInput);
+  const oldPasswordInput = useSelector(
+    (state) => state.editProfile.oldPasswordInput
+  );
+  const newPasswordInput = useSelector(
+    (state) => state.editProfile.newPasswordInput
+  );
+  const confirmNewPasswordInput = useSelector(
+    (state) => state.editProfile.confirmNewPasswordInput
+  );
+
+  // we get all the user data from the store before the user has modified
+  // it to display it in the form as default values
+  const currentFirstname = useSelector(
+    (state) => state.user.currentUser.firstname
+  );
+  const currentLastname = useSelector(
+    (state) => state.user.currentUser.lastname
+  );
+  const currentUsername = useSelector((state) => state.user.currentUser.pseudo);
+  const currentEmail = useSelector((state) => state.user.currentUser.email);
+  const currentCity = useSelector((state) => state.user.currentUser.city);
+  const currentBirthdate = useSelector(
+    (state) => state.user.currentUser.birthdate
+  );
+  const currentBio = useSelector((state) => state.user.currentUser.bio);
+
+  const profileId = useSelector((state) => state.user.currentUser.id);
+  const errorMessage = useSelector((state) => state.editProfile.errorMessage);
+
   const [image, setImage] = useState(null);
+  const [deleteOpenings, setDeleteOpenings] = useState(false);
 
   const handleImageChange = (e) => {
     // we get the first file selected by the user from the input
@@ -16,7 +70,6 @@ const ProfileEdition = () => {
       reader.onloadend = () => {
         // reader.result contains the file content in a data URL format (base64)
         setImage(reader.result);
-        console.log(reader.result);
       };
       // readAsDataURL will read the file and transform it to a data URL.
       // At the end, the onloadend event will be triggered.
@@ -27,7 +80,14 @@ const ProfileEdition = () => {
   return (
     <main className="ProfileEdition">
       <h2 className="ProfileEdition-title">Modification de votre profil</h2>
-      <form action="submit" className="ProfileEdition-form">
+      <form
+        action="submit"
+        className="ProfileEdition-form"
+        onSubmit={(e) => {
+          e.preventDefault();
+          dispatch(postEditProfileForm(profileId, navigate));
+        }}
+      >
         <div className="ProfileEdition-form-picture">
           <div className="ProfileEdition-form-picture-imgContainer">
             {!image ? (
@@ -49,7 +109,9 @@ const ProfileEdition = () => {
             type="file"
             id="upload-picture"
             accept="image/*"
-            onChange={handleImageChange}
+            onChange={(e) => {
+              handleImageChange(e);
+            }}
             className="ProfileEdition-form-picture-input"
           />
         </div>
@@ -59,13 +121,27 @@ const ProfileEdition = () => {
             type="text"
             id="firstname"
             name="firstname"
-            value="Tom"
+            value={firstnameInput === '' ? currentFirstname : firstnameInput}
+            onChange={(e) => {
+              dispatch(
+                changeEditProfileInput(e.target.value, 'firstnameInput')
+              );
+            }}
             required
           />
         </div>
-        <div className="ProfileEdition-form-name">
-          <label htmlFor="name">Nom</label>
-          <input type="text" id="name" name="name" value="Fourage" required />
+        <div className="ProfileEdition-form-lastname">
+          <label htmlFor="lastname">Nom</label>
+          <input
+            type="text"
+            id="lastname"
+            name="lastname"
+            value={lastnameInput === '' ? currentLastname : lastnameInput}
+            onChange={(e) => {
+              dispatch(changeEditProfileInput(e.target.value, 'lastnameInput'));
+            }}
+            required
+          />
         </div>
         <div className="ProfileEdition-form-username">
           <label htmlFor="username">Nom d&apos;utilisateur</label>
@@ -73,7 +149,10 @@ const ProfileEdition = () => {
             type="text"
             id="username"
             name="username"
-            value="bogossdu40"
+            value={usernameInput === '' ? currentUsername : usernameInput}
+            onChange={(e) => {
+              dispatch(changeEditProfileInput(e.target.value, 'usernameInput'));
+            }}
             required
           />
         </div>
@@ -83,13 +162,25 @@ const ProfileEdition = () => {
             type="text"
             id="email"
             name="email"
-            value="tom.fourage.dev@gmail.com"
+            value={emailInput === '' ? currentEmail : emailInput}
+            onChange={(e) => {
+              dispatch(changeEditProfileInput(e.target.value, 'emailInput'));
+            }}
             required
           />
         </div>
         <div className="ProfileEdition-form-city">
           <label htmlFor="city">Ville</label>
-          <input type="text" id="city" name="city" value="Seignosse" required />
+          <input
+            type="text"
+            id="city"
+            name="city"
+            value={cityInput === '' ? currentCity : cityInput}
+            onChange={(e) => {
+              dispatch(changeEditProfileInput(e.target.value, 'cityInput'));
+            }}
+            required
+          />
         </div>
         <div className="ProfileEdition-form-birthdate">
           <label htmlFor="birthdate">Date de naissance</label>
@@ -97,7 +188,12 @@ const ProfileEdition = () => {
             type="date"
             id="birthdate"
             name="birthdate"
-            value="22/03/1991"
+            value={birthdateInput === '' ? currentBirthdate : birthdateInput}
+            onChange={(e) => {
+              dispatch(
+                changeEditProfileInput(e.target.value, 'birthdateInput')
+              );
+            }}
             required
           />
         </div>
@@ -108,7 +204,10 @@ const ProfileEdition = () => {
             id="bio"
             name="bio"
             placeholder="Décrivez-vous en quelques mots..."
-            value=""
+            value={bioInput === '' ? currentBio : bioInput}
+            onChange={(e) => {
+              dispatch(changeEditProfileInput(e.target.value, 'bioInput'));
+            }}
           />
         </div>
         <h3 className="ProfileEdition-form-password">
@@ -120,13 +219,28 @@ const ProfileEdition = () => {
             type="password"
             id="oldPassword"
             name="oldPassword"
-            value="oldpassword"
+            value={oldPasswordInput}
+            onChange={(e) => {
+              dispatch(
+                changeEditProfileInput(e.target.value, 'oldPasswordInput')
+              );
+            }}
             required
           />
         </div>
         <div className="ProfileEdition-form-newPassword">
           <label htmlFor="newPassword">Nouveau mot de passe</label>
-          <input type="password" id="newPassword" name="newPassword" value="" />
+          <input
+            type="password"
+            id="newPassword"
+            name="newPassword"
+            value={newPasswordInput}
+            onChange={(e) => {
+              dispatch(
+                changeEditProfileInput(e.target.value, 'newPasswordInput')
+              );
+            }}
+          />
         </div>
         <div className="ProfileEdition-form-confirmNewPassword">
           <label htmlFor="confirmNewPassword">
@@ -136,15 +250,58 @@ const ProfileEdition = () => {
             type="password"
             id="confirmNewPassword"
             name="confirmNewPassword"
-            value=""
+            value={confirmNewPasswordInput}
+            onChange={(e) => {
+              dispatch(
+                changeEditProfileInput(
+                  e.target.value,
+                  'confirmNewPasswordInput'
+                )
+              );
+            }}
           />
         </div>
+        {errorMessage.length > 0 && (
+          <div className="ProfileEdition-form-error"> {errorMessage} </div>
+        )}
         <button type="submit" className="ProfileEdition-form-submit">
           Enregistrer les modifications
         </button>
-        <button type="button" className="ProfileEdition-form-delete">
+        <button
+          type="button"
+          className="ProfileEdition-form-delete"
+          onClick={() => {
+            // dispatch(deleteProfile(profileId, navigate));
+            setDeleteOpenings(!deleteOpenings);
+          }}
+        >
           Supprimer mon profil
         </button>
+        {deleteOpenings && (
+          <div className="ProfileEdition-form-delete-confirm">
+            <p>
+              Êtes-vous sûr de vouloir supprimer votre profil ? Cette action est
+              irréversible.
+            </p>
+            <button
+              type="button"
+              onClick={() => {
+                // console.log('delete');
+                dispatch(deleteProfile(profileId, navigate));
+              }}
+            >
+              Oui, je veux supprimer mon profil
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setDeleteOpenings(!deleteOpenings);
+              }}
+            >
+              Annuler
+            </button>
+          </div>
+        )}
       </form>
     </main>
   );

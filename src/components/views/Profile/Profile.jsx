@@ -1,6 +1,7 @@
 // Import necessary libraries
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Import actions
 import { fetchUserWithId } from '../../../actions/userActions';
@@ -15,6 +16,7 @@ import ParticipationsCard from './ParticipationsCard/ParticipationsCard';
 import './Profile.scss';
 
 const Profile = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const userState = useSelector((state) => state.user);
@@ -23,7 +25,7 @@ const Profile = () => {
   useEffect(() => {
     // If userId is not null, fetch the user with the id
     if (userId) {
-      dispatch(fetchUserWithId(userId, 'current'));
+      dispatch(fetchUserWithId(userId, 'current', navigate));
     }
   }, [userId, dispatch]);
 

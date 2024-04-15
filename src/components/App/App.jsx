@@ -19,7 +19,7 @@ import './App.scss';
 
 const App = () => {
   const location = useLocation();
-  const message = useSelector((state) => state.global.popUpMessage);
+  const message = useSelector((state) => state.global.popUpMessage.message);
 
   const excludedPaths = ['/login', '/register'];
   const isExcludedPath = excludedPaths.includes(location.pathname);

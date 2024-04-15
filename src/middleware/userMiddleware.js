@@ -86,7 +86,8 @@ const userMiddleware = (store) => (next) => (action) => {
           store.dispatch(handleSuccessLogin(data));
           store.dispatch(
             writePopUpMessage(
-              `Bienvenue ${data.user.firstname} ${data.user.lastname} !`
+              `Bienvenue ${data.user.firstname} ${data.user.lastname} !`,
+              'success'
             )
           );
           setTimeout(() => {
@@ -108,6 +109,19 @@ const userMiddleware = (store) => (next) => (action) => {
       break;
     }
     case FETCH_USER_WITH_ID: {
+      if (!store.getState().user.loggedData.token) {
+        store.dispatch(
+          writePopUpMessage(
+            'Vous devez être connecté pour accéder à ce contenu',
+            'error'
+          )
+        );
+        setTimeout(() => {
+          store.dispatch(removePopUpMessage());
+        }, 5000);
+        action.navigate('/');
+        return;
+      }
       fetch(
         `https://melvinleroux-server.eddi.cloud/api/v1/users/${action.id}`,
         {

@@ -1,8 +1,7 @@
 @use '/src/styles/variables' as v;
 
 .PopUp {
-  background-color: v.$primaryColorT;
-  border: 1px solid v.$primaryColorDark;
+  border: 1px solid;
   border-radius: v.$borderRadius;
   font-size: v.$textSize;
   padding: 0.75rem 1rem;
@@ -11,4 +10,14 @@
   top: 4.5rem;
   width: 25rem;
   z-index: 1;
+
+  &.error {
+    background-color: rgba(199, 97, 97, 0.75);
+    border-color: rgb(172, 0, 0);
+  }
+
+  &.success {
+    background-color: v.$primaryColorT;
+    border-color: v.$primaryColorDark;
+  }
 }

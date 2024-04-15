@@ -4,7 +4,7 @@ import {
 } from '../actions/globalActions';
 
 export const initialState = {
-  popUpMessage: '',
+  popUpMessage: { message: '', status: '' },
 };
 
 const globalReducer = (state = initialState, action = {}) => {
@@ -12,12 +12,12 @@ const globalReducer = (state = initialState, action = {}) => {
     case WRITE_POPUP_MESSAGE:
       return {
         ...state,
-        popUpMessage: action.popUpMessage,
+        popUpMessage: { message: action.popUpMessage, status: action.status },
       };
     case REMOVE_POPUP_MESSAGE:
       return {
         ...state,
-        popUpMessage: '',
+        popUpMessage: { message: '', status: '' },
       };
     default:
       return state;

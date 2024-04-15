@@ -1,7 +1,7 @@
 // Import necessary libraries
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 // Import actions
 import { fetchUserWithId } from '../../../actions/userActions';
@@ -15,11 +15,12 @@ import ParticipationsCard from '../Profile/ParticipationsCard/ParticipationsCard
 import './UserPage.scss';
 
 const UserPage = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { slug } = useParams();
 
   useEffect(() => {
-    dispatch(fetchUserWithId(slug, 'visited'));
+    dispatch(fetchUserWithId(slug, 'visited', navigate));
   }, [slug, dispatch]);
 
   const user = useSelector((state) => state.user.visitedUser);
