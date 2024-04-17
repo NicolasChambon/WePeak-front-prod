@@ -13,7 +13,7 @@ import {
 const editProfileMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case POST_EDIT_PROFILE_FORM: {
-      if (!store.getState().user.loggedData.token) {
+      if (!JSON.parse(localStorage.getItem('token'))) {
         store.dispatch(
           writePopUpMessage(
             'Vous devez être connecté pour effectuer cette action.',
@@ -23,25 +23,29 @@ const editProfileMiddleware = (store) => (next) => (action) => {
         setTimeout(() => {
           store.dispatch(removePopUpMessage());
         }, 5000);
-        action.navigate('/');
+        action.navigate('/login');
         return;
       }
+      console.log('avant', store.getState().editProfile.base64Image);
       fetch(
         `https://melvinleroux-server.eddi.cloud/api/v1/users/${action.id}`,
         {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${store.getState().auth.token}`,
+            Authorization: `Bearer ${JSON.parse(
+              localStorage.getItem('token')
+            )}`,
           },
           body: JSON.stringify({
             firstname: store.getState().editProfile.firstnameInput,
             lastname: store.getState().editProfile.lastnameInput,
-            username: store.getState().editProfile.usernameInput,
+            pseudo: store.getState().editProfile.usernameInput,
             email: store.getState().editProfile.emailInput,
             city: store.getState().editProfile.cityInput,
             birthdate: store.getState().editProfile.birthdateInput,
-            bio: store.getState().editProfile.bioInput,
+            description: store.getState().editProfile.bioInput,
+            thumbnail: store.getState().editProfile.base64Image,
             oldPassword: store.getState().editProfile.oldPasswordInput,
             newPassword: store.getState().editProfile.newPasswordInput,
             confirmNewPassword:
@@ -50,6 +54,7 @@ const editProfileMiddleware = (store) => (next) => (action) => {
         }
       )
         .then((response) => {
+          console.log('avant', store.getState().editProfile.base64Image);
           if (!response.ok) {
             return response.json().then((error) => {
               throw new Error(error.errors || 'Network response was not ok');
@@ -67,7 +72,6 @@ const editProfileMiddleware = (store) => (next) => (action) => {
           action.navigate('/profile');
           store.dispatch(resetEditProfileForm());
           store.dispatch(setErrorMessage(''));
-          store.dispatch(logout());
         })
         .catch((error) => {
           console.error('There was an error with your fetch operation:', error);
@@ -77,8 +81,7 @@ const editProfileMiddleware = (store) => (next) => (action) => {
       break;
     }
     case DELETE_PROFILE: {
-      console.log('DELETE_PROFILE');
-      if (!store.getState().user.loggedData.token) {
+      if (!JSON.parse(localStorage.getItem('token'))) {
         store.dispatch(
           writePopUpMessage(
             'Vous devez être connecté pour effectuer cette action.',
@@ -88,7 +91,7 @@ const editProfileMiddleware = (store) => (next) => (action) => {
         setTimeout(() => {
           store.dispatch(removePopUpMessage());
         }, 5000);
-        action.navigate('/');
+        action.navigate('/login');
         return;
       }
       fetch(
@@ -96,7 +99,9 @@ const editProfileMiddleware = (store) => (next) => (action) => {
         {
           method: 'DELETE',
           headers: {
-            Authorization: `Bearer ${store.getState().auth.token}`,
+            Authorization: `Bearer ${JSON.parse(
+              localStorage.getItem('token')
+            )}`,
           },
         }
       )
@@ -116,6 +121,9 @@ const editProfileMiddleware = (store) => (next) => (action) => {
             store.dispatch(removePopUpMessage());
           }, 5000);
           action.navigate('/');
+          store.dispatch(resetEditProfileForm());
+          store.dispatch(setErrorMessage(''));
+          store.dispatch(logout());
         })
         .catch((error) => {
           console.error('There was an error with your fetch operation:', error);

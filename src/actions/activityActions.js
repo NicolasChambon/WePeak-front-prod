@@ -9,10 +9,13 @@ export const FETCH_ACTIVITY = 'FETCH_ACTIVITY';
 export const HANDLE_FETCH_ACTIVITY = 'HANDLE_FETCH_ACTIVITY';
 export const FETCH_ADRESS_FROM_COORDINATES = 'FETCH_ADRESS_FROM_COORDINATES';
 export const HANDLE_FETCH_ADRESS = 'HANDLE_FETCH_ADRESS';
+export const HANDLE_FETCH_ADDRESS_FROM_MARKER =
+  'HANDLE_FETCH_ADDRESS_FROM_MARKER';
 export const HANDLE_FETCH_ACTIVITIES_WITH_FILTER =
   'HANDLE_FETCH_ACTIVITIES_WITH_FILTER';
 export const HANDLE_FETCH_ACTIVITIES_WITH_DATES =
   'HANDLE_FETCH_ACTIVITIES_WITH_DATES';
+export const RESET_ACTIVITY_ADDRESS = 'RESET_ACTIVITY_ADDRESS';
 
 export const fetchActivitiesFromCity = (
   coordinates,
@@ -101,16 +104,31 @@ export const handleFetchActivity = (activity) => {
   };
 };
 
-export const fetchAdressFromCoordinates = (coordinates) => {
+export const fetchAdressFromCoordinates = (coordinates, identifier) => {
   return {
     type: FETCH_ADRESS_FROM_COORDINATES,
+    coordinates,
+    identifier,
+  };
+};
+
+export const handleFetchAdress = (activityAdress, coordinates) => {
+  return {
+    type: HANDLE_FETCH_ADRESS,
+    activityAdress,
     coordinates,
   };
 };
 
-export const handleFetchAdress = (activityAdress) => {
+export const handleFetchAddressFromMarker = (address) => {
   return {
-    type: HANDLE_FETCH_ADRESS,
-    activityAdress,
+    type: HANDLE_FETCH_ADDRESS_FROM_MARKER,
+    address,
+  };
+};
+
+export const resetActivityAddress = () => {
+  return {
+    type: RESET_ACTIVITY_ADDRESS,
   };
 };

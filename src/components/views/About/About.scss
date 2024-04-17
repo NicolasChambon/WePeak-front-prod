@@ -1,0 +1,70 @@
+@use '/src/styles/variables' as v;
+
+.About {
+  margin: 2rem auto;
+
+  &-welcome {
+    margin: 0 auto 2rem auto;
+    width: 70%;
+    &-title {
+      font-family: v.$titleFont;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+    &-text {
+      line-height: 2ch;
+    }
+  }
+  &-team {
+    &-title {
+      font-family: v.$titleFont;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+    &-members {
+      display: flex;
+      justify-content: space-around;
+
+      @media (max-width: v.$tablet) {
+        flex-wrap: wrap;
+      }
+
+      &-member {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        &-name {
+          font-family: v.$titleFont;
+          font-size: 1.15rem;
+          font-weight: 500;
+          margin-bottom: 0.5rem;
+        }
+        &-imgContainer {
+          border: 1px solid v.$secondaryColor;
+          border-radius: v.$borderRadius;
+          height: 8rem;
+          margin-bottom: 0.5rem;
+          overflow: hidden;
+          width: 10rem;
+
+          img {
+            height: 100%;
+            object-fit: cover;
+            width: 100%;
+          }
+        }
+        &-role {
+          font-size: 0.9rem;
+          font-weight: 500;
+          margin-bottom: 0.5rem;
+        }
+        &-sport {
+          font-size: 0.9rem;
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+}

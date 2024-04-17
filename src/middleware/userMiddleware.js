@@ -10,6 +10,7 @@ import {
   FETCH_USER_WITH_ID,
   handleFetchCurrentUserWithId,
   handleFetchVisitedUserWithId,
+  LOGOUT,
 } from '../actions/userActions';
 import {
   writePopUpMessage,
@@ -39,7 +40,7 @@ const userMiddleware = (store) => (next) => (action) => {
     case GET_USER_POSITION_NAME: {
       const { userPosition } = store.getState().user;
       fetch(
-        `https://secure.geonames.org/findNearbyPostalCodesJSON?lat=${userPosition.lat}&lng=${userPosition.lng}&username=pommito`
+        `https://secure.geonames.org/findNearbyPostalCodesJSON?lat=${userPosition.lat}&lng=${userPosition.lng}&username=nicolaschambon`
       )
         .then((response) => {
           if (!response.ok) {
@@ -83,6 +84,13 @@ const userMiddleware = (store) => (next) => (action) => {
           return response.json();
         })
         .then((data) => {
+          localStorage.setItem('token', JSON.stringify(data.token));
+          localStorage.setItem('id', JSON.stringify(data.user.id));
+          localStorage.setItem(
+            'thumbnail',
+            JSON.stringify(data.user.thumbnail)
+          );
+
           store.dispatch(handleSuccessLogin(data));
           store.dispatch(
             writePopUpMessage(
@@ -108,8 +116,18 @@ const userMiddleware = (store) => (next) => (action) => {
         .finally(() => {});
       break;
     }
+    case LOGOUT: {
+      localStorage.removeItem('token');
+      localStorage.removeItem('id');
+      localStorage.removeItem('thumbnail');
+      store.dispatch(writePopUpMessage('Vous avez été déconnecté', 'success'));
+      setTimeout(() => {
+        store.dispatch(removePopUpMessage());
+      }, 5000);
+      break;
+    }
     case FETCH_USER_WITH_ID: {
-      if (!store.getState().user.loggedData.token) {
+      if (!JSON.parse(localStorage.getItem('token'))) {
         store.dispatch(
           writePopUpMessage(
             'Vous devez être connecté pour accéder à ce contenu',
@@ -119,14 +137,17 @@ const userMiddleware = (store) => (next) => (action) => {
         setTimeout(() => {
           store.dispatch(removePopUpMessage());
         }, 5000);
-        action.navigate('/');
+        action.navigate('/login');
         return;
       }
+      console.log('FETCH_USER_WITH_ID', action.id);
       fetch(
         `https://melvinleroux-server.eddi.cloud/api/v1/users/${action.id}`,
         {
           headers: {
-            Authorization: `Bearer ${store.getState().user.loggedData.token}`,
+            Authorization: `Bearer ${JSON.parse(
+              localStorage.getItem('token')
+            )}`,
           },
         }
       )

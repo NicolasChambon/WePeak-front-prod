@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import { IoIosMore } from 'react-icons/io';
 import PropTypes from 'prop-types';
 
@@ -15,9 +17,12 @@ const ParticipationsCard = ({ title, participations }) => {
             className="ParticipationsCard-list-item"
             key={participation.activity.id}
           >
-            <div className="ParticipationsCard-list-item-imgContainer">
+            <Link
+              className="ParticipationsCard-list-item-imgContainer"
+              to={`/activities/${participation.activity.id}`}
+            >
               <img src={participation.activity.thumbnail} alt="" />
-            </div>
+            </Link>
             <div className="ParticipationsCard-list-item-content">
               <p className="ParticipationsCard-list-item-content-name">
                 {participation.activity.name}
@@ -55,7 +60,7 @@ ParticipationsCard.propTypes = {
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
         date: PropTypes.string.isRequired,
-        thumbnail: PropTypes.string.isRequired,
+        thumbnail: PropTypes.string,
         sports: PropTypes.arrayOf(
           PropTypes.shape({
             id: PropTypes.number.isRequired,

@@ -1,0 +1,11 @@
+@use '/src/styles/variables' as v;
+
+.map-container {
+  border-radius: v.$borderRadius;
+  height: 100%;
+  width: 100%;
+}
+
+.leaflet-control-attribution {
+  display: none;
+}

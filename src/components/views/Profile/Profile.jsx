@@ -12,6 +12,9 @@ import EditProfile from './EditProfile/EditProfile';
 import SportsCard from './SportsCard/SportsCard';
 import ParticipationsCard from './ParticipationsCard/ParticipationsCard';
 
+// Import utils
+import rewriteImagePath from '../../../utils/rewriteImagePath';
+
 // Import stylesheet
 import './Profile.scss';
 
@@ -19,20 +22,19 @@ const Profile = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const userState = useSelector((state) => state.user);
-  const userId = userState.loggedData?.user.id;
+  const userId = JSON.parse(localStorage.getItem('id'));
 
   useEffect(() => {
     // If userId is not null, fetch the user with the id
     if (userId) {
       dispatch(fetchUserWithId(userId, 'current', navigate));
     }
-  }, [userId, dispatch]);
+  }, []);
 
   const user = useSelector((state) => state.user.currentUser);
 
   // if user is not yet available, return null
-  if (!user.Sports) return null;
+  if (!user.sports) return null;
 
   // we keep only the validated participations
   const validatedParticipations = user.participations.filter(
@@ -57,9 +59,9 @@ const Profile = () => {
           email={user.email}
           city={user.city}
           memberSince={user.createdAt}
-          thumbnail={user.thumbnail}
+          thumbnail={rewriteImagePath(user.thumbnail)}
           bio={user.description}
-          sportsNumber={user.Sports.length}
+          sportsNumber={user.sports.length}
           subscriptionsNumber={futureActivities.length}
           pastActivitiesNumber={pastActivities.length}
         />
@@ -67,11 +69,11 @@ const Profile = () => {
           className="Profile-left-editProfile"
           firstname={user.firstname}
           lastname={user.lastname}
-          thumbnail={user.thumbnail}
+          thumbnail={rewriteImagePath(user.thumbnail)}
         />
       </div>
       <div className="Profile-right">
-        <SportsCard className="Profile-right-sportsCard" sports={user.Sports} />
+        <SportsCard className="Profile-right-sportsCard" sports={user.sports} />
         <ParticipationsCard
           className="Profile-right-subscriptionCard"
           title="Mes inscriptions"

@@ -1,7 +1,8 @@
 // Import necessary libraries
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { FiAlertTriangle } from 'react-icons/fi';
 
 // Import actions
 import {
@@ -16,6 +17,48 @@ import './ProfileEdition.scss';
 const ProfileEdition = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const profileId = useSelector((state) => state.user.currentUser.id);
+  const errorMessage = useSelector((state) => state.editProfile.errorMessage);
+
+  // we get all the current user data from the store before the user has modified
+  // it to display it in the form as default values
+  const currentFirstname = useSelector(
+    (state) => state.user.currentUser.firstname
+  );
+  const currentLastname = useSelector(
+    (state) => state.user.currentUser.lastname
+  );
+  const currentUsername = useSelector((state) => state.user.currentUser.pseudo);
+  const currentEmail = useSelector((state) => state.user.currentUser.email);
+  const currentCity = useSelector((state) => state.user.currentUser.city);
+  const currentBirthdate = useSelector(
+    (state) => state.user.currentUser.birthdate
+  );
+  // we format the birthdate to be displayed in the form
+  const currentBirthdateFormatted = new Date(currentBirthdate);
+  const currentBirthdateFormattedString = currentBirthdateFormatted
+    .toISOString()
+    .split('T')[0];
+  const currentBio = useSelector((state) => state.user.currentUser.description);
+  const currentThumbnail = useSelector(
+    (state) => state.user.currentUser.thumbnail
+  );
+
+  // we set the default values of the form to the user data
+  useEffect(() => {
+    dispatch(changeEditProfileInput(currentFirstname, 'firstnameInput'));
+    dispatch(changeEditProfileInput(currentLastname, 'lastnameInput'));
+    dispatch(changeEditProfileInput(currentUsername, 'usernameInput'));
+    dispatch(changeEditProfileInput(currentEmail, 'emailInput'));
+    dispatch(changeEditProfileInput(currentCity, 'cityInput'));
+    dispatch(
+      changeEditProfileInput(currentBirthdateFormattedString, 'birthdateInput')
+    );
+    dispatch(changeEditProfileInput(currentBio, 'bioInput'));
+  }, []);
+
+  // we get all the user data from the store after the user has modified
   const firstnameInput = useSelector(
     (state) => state.editProfile.firstnameInput
   );
@@ -36,27 +79,17 @@ const ProfileEdition = () => {
   const confirmNewPasswordInput = useSelector(
     (state) => state.editProfile.confirmNewPasswordInput
   );
+  const imageInput = useSelector((state) => state.editProfile.base64Image);
 
-  // we get all the user data from the store before the user has modified
-  // it to display it in the form as default values
-  const currentFirstname = useSelector(
-    (state) => state.user.currentUser.firstname
-  );
-  const currentLastname = useSelector(
-    (state) => state.user.currentUser.lastname
-  );
-  const currentUsername = useSelector((state) => state.user.currentUser.pseudo);
-  const currentEmail = useSelector((state) => state.user.currentUser.email);
-  const currentCity = useSelector((state) => state.user.currentUser.city);
-  const currentBirthdate = useSelector(
-    (state) => state.user.currentUser.birthdate
-  );
-  const currentBio = useSelector((state) => state.user.currentUser.bio);
+  // we get the image to display in the form
+  let image = '';
+  if (imageInput) {
+    image = imageInput;
+  } else {
+    image = currentThumbnail;
+  }
 
-  const profileId = useSelector((state) => state.user.currentUser.id);
-  const errorMessage = useSelector((state) => state.editProfile.errorMessage);
-
-  const [image, setImage] = useState(null);
+  // Open/Close the delete profile window when press on "Supprimer mon profil" button
   const [deleteOpenings, setDeleteOpenings] = useState(false);
 
   const handleImageChange = (e) => {
@@ -69,7 +102,8 @@ const ProfileEdition = () => {
       // We setup an event listener. onloadend is an event that is triggered when the file has been read.
       reader.onloadend = () => {
         // reader.result contains the file content in a data URL format (base64)
-        setImage(reader.result);
+        // setImage(reader.result);
+        dispatch(changeEditProfileInput(reader.result, 'base64Image'));
       };
       // readAsDataURL will read the file and transform it to a data URL.
       // At the end, the onloadend event will be triggered.
@@ -121,7 +155,7 @@ const ProfileEdition = () => {
             type="text"
             id="firstname"
             name="firstname"
-            value={firstnameInput === '' ? currentFirstname : firstnameInput}
+            value={firstnameInput}
             onChange={(e) => {
               dispatch(
                 changeEditProfileInput(e.target.value, 'firstnameInput')
@@ -136,7 +170,7 @@ const ProfileEdition = () => {
             type="text"
             id="lastname"
             name="lastname"
-            value={lastnameInput === '' ? currentLastname : lastnameInput}
+            value={lastnameInput}
             onChange={(e) => {
               dispatch(changeEditProfileInput(e.target.value, 'lastnameInput'));
             }}
@@ -149,7 +183,7 @@ const ProfileEdition = () => {
             type="text"
             id="username"
             name="username"
-            value={usernameInput === '' ? currentUsername : usernameInput}
+            value={usernameInput}
             onChange={(e) => {
               dispatch(changeEditProfileInput(e.target.value, 'usernameInput'));
             }}
@@ -162,7 +196,7 @@ const ProfileEdition = () => {
             type="text"
             id="email"
             name="email"
-            value={emailInput === '' ? currentEmail : emailInput}
+            value={emailInput}
             onChange={(e) => {
               dispatch(changeEditProfileInput(e.target.value, 'emailInput'));
             }}
@@ -175,7 +209,7 @@ const ProfileEdition = () => {
             type="text"
             id="city"
             name="city"
-            value={cityInput === '' ? currentCity : cityInput}
+            value={cityInput}
             onChange={(e) => {
               dispatch(changeEditProfileInput(e.target.value, 'cityInput'));
             }}
@@ -188,7 +222,7 @@ const ProfileEdition = () => {
             type="date"
             id="birthdate"
             name="birthdate"
-            value={birthdateInput === '' ? currentBirthdate : birthdateInput}
+            value={birthdateInput}
             onChange={(e) => {
               dispatch(
                 changeEditProfileInput(e.target.value, 'birthdateInput')
@@ -204,7 +238,7 @@ const ProfileEdition = () => {
             id="bio"
             name="bio"
             placeholder="Décrivez-vous en quelques mots..."
-            value={bioInput === '' ? currentBio : bioInput}
+            value={bioInput}
             onChange={(e) => {
               dispatch(changeEditProfileInput(e.target.value, 'bioInput'));
             }}
@@ -225,7 +259,6 @@ const ProfileEdition = () => {
                 changeEditProfileInput(e.target.value, 'oldPasswordInput')
               );
             }}
-            required
           />
         </div>
         <div className="ProfileEdition-form-newPassword">
@@ -272,30 +305,32 @@ const ProfileEdition = () => {
           className="ProfileEdition-form-delete"
           onClick={() => {
             // dispatch(deleteProfile(profileId, navigate));
-            setDeleteOpenings(!deleteOpenings);
+            setDeleteOpenings(true);
           }}
         >
           Supprimer mon profil
         </button>
         {deleteOpenings && (
-          <div className="ProfileEdition-form-delete-confirm">
+          <div className="ProfileEdition-form-delete-window">
+            <FiAlertTriangle className="ProfileEdition-form-delete-window-icon" />
             <p>
-              Êtes-vous sûr de vouloir supprimer votre profil ? Cette action est
-              irréversible.
+              Êtes-vous sûr de vouloir supprimer votre profil ? <br /> Cette
+              action est irréversible.
             </p>
             <button
+              className="confirm"
               type="button"
               onClick={() => {
-                // console.log('delete');
                 dispatch(deleteProfile(profileId, navigate));
               }}
             >
               Oui, je veux supprimer mon profil
             </button>
             <button
+              className="delete"
               type="button"
               onClick={() => {
-                setDeleteOpenings(!deleteOpenings);
+                setDeleteOpenings(false);
               }}
             >
               Annuler

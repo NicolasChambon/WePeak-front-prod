@@ -45,6 +45,12 @@
       font-size: 0.5rem;
     }
 
+    &-city {
+      font-size: v.$textSize;
+      font-weight: 500;
+      margin-top: 0.5rem;
+    }
+
     &-title {
       font-family: v.$titleFont;
       font-size: 1rem;

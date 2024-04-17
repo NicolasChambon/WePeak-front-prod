@@ -1,0 +1,46 @@
+@use '/src/styles/variables' as v;
+
+.InputSearch {
+  width: 100%;
+
+  &-dropdown {
+    background-color: white;
+    border: 1px solid v.$secondaryColor;
+    border-radius: v.$borderRadius;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    left: 0;
+    overflow: hidden;
+    padding: 0.5rem;
+    position: absolute;
+    top: 120%;
+    width: 100%;
+    z-index: 9999;
+
+    &-item {
+      background-color: transparent;
+      border: none;
+      border-radius: v.$borderRadius;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.5rem;
+      text-align: left;
+
+      &:hover {
+        background-color: v.$secondaryColor;
+      }
+
+      &-icon {
+        color: v.$textColor;
+        padding: 0.5rem;
+        background-color: v.$secondaryColorDark;
+        border-radius: v.$borderRadius;
+        height: 2rem;
+        width: 2rem;
+      }
+    }
+  }
+}

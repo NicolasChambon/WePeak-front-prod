@@ -18,6 +18,7 @@
     gap: 1.2rem;
     justify-content: space-around;
     margin: auto;
+    position: relative;
     padding: 1.5rem;
     width: 70%;
 
@@ -195,6 +196,61 @@
 
       &:hover {
         color: rgb(136, 31, 31);
+      }
+    }
+
+    &-delete-window {
+      background-color: rgb(255, 204, 204);
+      border: rgb(253, 182, 182) 1px solid;
+      border-radius: calc(v.$borderRadius * 0.5);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem 1rem 1rem;
+      position: absolute;
+      bottom: -10.75rem;
+      right: 0.5rem;
+      width: 18rem;
+
+      &-icon {
+        color: rgb(211, 29, 29);
+        font-size: 1.5rem;
+        margin: 0 auto;
+      }
+
+      p {
+        color: rgb(211, 29, 29);
+        font-size: v.$textSize;
+        font-weight: 600;
+        line-height: 2ch;
+        text-align: center;
+      }
+
+      button {
+        border: none;
+        border-radius: v.$borderRadius;
+        font-family: v.$textFont;
+        font-size: v.$textSize;
+        padding: 0.5rem;
+        width: 100%;
+
+        &.delete {
+          background-color: v.$primaryColor;
+          color: v.$backgroundColor;
+
+          &:hover {
+            background-color: v.$primaryColorDark;
+          }
+        }
+
+        &.confirm {
+          background-color: rgb(211, 29, 29);
+          color: v.$backgroundColor;
+
+          &:hover {
+            background-color: rgb(136, 31, 31);
+          }
+        }
       }
     }
   }

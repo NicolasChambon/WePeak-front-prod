@@ -4,7 +4,6 @@ import {
   CHANGE_LOGIN_INPUT,
   HANDLE_SUCCESS_LOGIN,
   SET_LOGIN_ERROR_MESSAGE,
-  LOGOUT,
   RESET_LOGIN_FORM,
   HANDLE_FETCH_CURRENT_USER_WITH_ID,
   HANDLE_FETCH_VISITED_USER_WITH_ID,
@@ -15,7 +14,6 @@ export const initialState = {
   userPositionName: '',
   emailInputLogin: '',
   passwordInputLogin: '',
-  loggedData: {},
   loginErrorMessage: '',
   currentUser: {},
   visitedUser: {},
@@ -41,7 +39,6 @@ const userReducer = (state = initialState, action = {}) => {
     case HANDLE_SUCCESS_LOGIN:
       return {
         ...state,
-        loggedData: action.loggedData,
         passwordInputLogin: '',
         emailInputLogin: '',
         loginErrorMessage: '',
@@ -50,11 +47,6 @@ const userReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         loginErrorMessage: action.message,
-      };
-    case LOGOUT:
-      return {
-        ...state,
-        loggedData: {},
       };
     case RESET_LOGIN_FORM:
       return {

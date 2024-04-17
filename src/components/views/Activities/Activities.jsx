@@ -16,9 +16,17 @@ import Calendar from './Calendar/Calendar';
 
 const Activities = () => {
   const activityList = useSelector((state) => state.activity.activities);
-  const lastSearchedCity = useSelector(
+
+  let lastSearchedCity = useSelector(
     (state) => state.activity.lastSearchedCity
   );
+
+  // If user has not searched for a city, we set the lastSearchedCity to the user's position
+  const userPositionName = useSelector((state) => state.user.userPositionName);
+  if (!lastSearchedCity.name) {
+    lastSearchedCity.name = userPositionName;
+  }
+
   const [isFilterActive, setIsFilterActive] = useState(null);
 
   useEffect(() => {
@@ -63,6 +71,7 @@ const Activities = () => {
           <EventCard
             key={activity['0'].id}
             title={activity['0'].name}
+            city={activity['0'].city}
             date={activity['0'].date}
             difficulty={activity['0'].difficulty.label}
             slug={activity['0'].id}

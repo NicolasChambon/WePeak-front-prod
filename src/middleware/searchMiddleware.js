@@ -6,10 +6,15 @@ import {
 const searchMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case FETCH_CITIES_SEARCH: {
-      const inputSearch = store.getState().search.input;
+      let inputSearch;
+      if (action.identifier === 'createActivity') {
+        inputSearch = store.getState().search.searchedCity.name;
+      } else {
+        inputSearch = store.getState().search.input;
+      }
 
       fetch(
-        `https://secure.geonames.org/postalCodeSearchJSON?placename_startsWith=${inputSearch}&country=FR&username=pommito`
+        `https://secure.geonames.org/postalCodeSearchJSON?placename_startsWith=${inputSearch}&country=FR&maxRows=6&username=pommito`
       )
         .then((response) => {
           if (!response.ok) {

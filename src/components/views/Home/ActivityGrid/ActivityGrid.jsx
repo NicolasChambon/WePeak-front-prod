@@ -27,6 +27,7 @@ const ActivityGrid = ({ userPositionName }) => {
             key={activity['0'].id}
             title={activity['0'].name}
             date={activity['0'].date}
+            city={activity['0'].city}
             difficulty={activity['0'].difficulty.label}
             slug={activity['0'].id}
             sport={activity['0'].sports[0].label}

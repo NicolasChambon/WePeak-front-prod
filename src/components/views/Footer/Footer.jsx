@@ -14,8 +14,8 @@ import Logo_BW from '../../../assets/Logo_BW.svg';
 import './Footer.scss';
 
 const Footer = () => {
-  const loggedData = useSelector((state) => state.user.loggedData);
-  const isLogged = loggedData.token !== undefined;
+  const token = JSON.parse(localStorage.getItem('token'));
+  const isLogged = token !== null;
 
   return (
     <footer className="Footer">
@@ -97,7 +97,7 @@ const Footer = () => {
               <Link to="/contact">Nous contacter</Link>
             </li>
             <li>
-              <Link to="/legal-notices">Mentions légales</Link>
+              <Link to="/legal">Mentions légales</Link>
             </li>
             <li>
               <Link to="/privacy">Confidentialité</Link>

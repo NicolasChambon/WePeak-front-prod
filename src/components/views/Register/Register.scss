@@ -23,7 +23,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 3rem;
+    padding: 2rem;
     gap: 1rem;
     border-radius: v.$borderRadius;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -35,13 +35,13 @@
     }
 
     &-title {
-      font-size: 2rem;
+      font-size: 1.75rem;
       font-weight: 600;
     }
 
     &-register {
       font-size: v.$textSize;
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
 
       &-link {
         color: v.$accentColor;
@@ -78,7 +78,6 @@
         color: red;
         font-size: v.$textSize;
         font-weight: 500;
-        margin-top: 0.5rem;
         padding: 0.5rem;
         text-align: center;
         width: 100%;

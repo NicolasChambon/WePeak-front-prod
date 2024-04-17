@@ -140,7 +140,8 @@ const activityMiddleware = (store) => (next) => (action) => {
           return response.json();
         })
         .then((data) => {
-          store.dispatch(handleFetchAdress(data.address));
+          console.log(data);
+          store.dispatch(handleFetchAdress(data.address, data.boundingbox));
         })
         .catch((error) => {
           console.error('There was an error with your fetch operation:', error);

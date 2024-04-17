@@ -1,0 +1,16 @@
+@use '/src/styles/variables' as v;
+
+.Legal {
+  margin: 2rem auto;
+  text-align: left;
+  width: 90%;
+  &-title {
+    font-family: v.$titleFont;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+  }
+  &-text {
+    line-height: 2ch;
+  }
+}

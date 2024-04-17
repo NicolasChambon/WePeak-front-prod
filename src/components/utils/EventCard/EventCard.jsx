@@ -6,7 +6,15 @@ import { FiArrowRight } from 'react-icons/fi';
 
 import './EventCard.scss';
 
-const EventCard = ({ title, date, difficulty, slug, sport, thumbnail }) => {
+const EventCard = ({
+  title,
+  date,
+  difficulty,
+  slug,
+  sport,
+  thumbnail,
+  city,
+}) => {
   return (
     <article className="EventCard">
       <Link to={`/activities/${slug}`}>
@@ -24,6 +32,7 @@ const EventCard = ({ title, date, difficulty, slug, sport, thumbnail }) => {
             day: 'numeric',
           })}
         </time>
+        <p className="EventCard-content-city">{city}</p>
         <h3 className="EventCard-content-title">{title}</h3>
         <Link to={`/activities/${slug}`} className="EventCard-content-link">
           <span>Lire plus</span>
@@ -43,6 +52,7 @@ EventCard.propTypes = {
   slug: PropTypes.number.isRequired,
   sport: PropTypes.string.isRequired,
   thumbnail: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
 };
 
 export default EventCard;

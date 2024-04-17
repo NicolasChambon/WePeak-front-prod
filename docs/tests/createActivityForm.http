@@ -1,0 +1,16 @@
+POST https://melvinleroux-server.eddi.cloud/api/v1/activities HTTP/1.1
+Content-Type: application/json
+
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MTI5MTUxMDgsImV4cCI6MTcxMzAwMTUwOCwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoidmljdG9yLmxlYmVjcS5wcm9AZ21haWwuY29tIn0.mhnzo_a19lPZoMmqGJi2lRoDsD9n8kdEpTuOEbeml0ieGKl9RDzrxH-edp4BG8nOgSaYmUSj53NKfZSHSdfuUdNG94V8rQAqx4S8HFfvAX1QY5588OPgxLvTvIJd_rr_kULwAHFLOXn-X4XdIzZmHY8LL8iHQcdg2ohyN10-0MxZ679dAYYm5ss4oJYpMFHfr2Dga4M1T2ztwJNOMGjDgkc0_aAd89KSerszV0XklZVoERtFNQfiF3QktkLjkEJFzCtPAL2ZuOY_U_6nxmLMpFIQIVqeQgoxjOKowU6gFpDYUmKDzMWN3yVEWLlvh0Tpt0Yf-72octvy_hgafyOz9w
+
+{
+  "name": "Mont ventoux à cloche pied",
+  "description": "En vrai les gars j'aime tout le monde dans le groupe sauf une personne...",
+  "date": "2024-04-30",
+  "lat": "44.174088",
+  "lng": "5.283778",
+  "difficulty" : "hard",
+  "groupSize" : "2-5",
+  "createdBy" : "1",
+  "sport" : "1"
+}

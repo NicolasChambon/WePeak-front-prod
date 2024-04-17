@@ -11,7 +11,6 @@ import {
 
 // Import images
 import Logo_BW from '../../../assets/Logo_BW.svg';
-import avatar from '../../../assets/avatar.svg';
 
 // Import actions
 import {
@@ -22,6 +21,9 @@ import {
 import { fetchActivitiesFromCity } from '../../../actions/activityActions';
 import { logout } from '../../../actions/userActions';
 
+// Import utils
+import rewriteImagePath from '../../../utils/rewriteImagePath';
+
 // Import stylesheet
 import './Header.scss';
 
@@ -30,14 +32,14 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const loggedData = useSelector((state) => state.user.loggedData);
-  const isLogged = loggedData.token !== undefined;
+  const token = JSON.parse(localStorage.getItem('token'));
+  const thumbnail = JSON.parse(localStorage.getItem('thumbnail'));
 
-  // Set default user picture
-  let userPictureUrl = avatar;
-  // If user is logged and has a thumbnail, we set userPictureUrl with the thumbnail
-  if (isLogged && loggedData.user.thumbnail) {
-    userPictureUrl = loggedData.user.thumbnail;
+  const isLogged = token !== null;
+
+  let userPictureUrl = '';
+  if (isLogged && thumbnail) {
+    userPictureUrl = rewriteImagePath(thumbnail);
   }
 
   // THIS CODE-BLOCK HANDLE SEARCH INPUT WITH CITIES SUGGESTIONS
@@ -45,7 +47,7 @@ const Header = () => {
   // Local state to stock the timeout between each input
   const [searchTimeout, setSearchTimeout] = useState(null);
   // Function to handle input search. Called at each input change
-  const handleInputSearch = (value) => {
+  const handleInputSearch = (value, identifier) => {
     // Update input search in the store
     dispatch(changeInputSearch(value));
     // If a timeout is already set, we clear it
@@ -55,7 +57,7 @@ const Header = () => {
     if (value.length > 2) {
       // Launch a new timeout to call Cities search API after 500ms
       const timeout = setTimeout(() => {
-        dispatch(fetchCitiesSearch(value));
+        dispatch(fetchCitiesSearch(identifier));
       }, 500);
       // Update searchTimeout state with the new timeout
       setSearchTimeout(timeout);
@@ -170,7 +172,7 @@ const Header = () => {
               placeholder="Commune, code postal"
               value={input}
               onChange={(e) => {
-                handleInputSearch(e.target.value);
+                handleInputSearch(e.target.value, 'headerSearchBar');
               }}
             />
             {input.length > 2 &&
@@ -183,6 +185,7 @@ const Header = () => {
                       type="button"
                       className="Header-form-search-cities-city"
                       onClick={() => {
+                        handleSearchButtonClick();
                         dispatch(
                           fetchActivitiesFromCity(
                             { lat: city.lat, lng: city.lng },
