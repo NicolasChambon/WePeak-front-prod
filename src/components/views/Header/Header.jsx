@@ -19,7 +19,7 @@ import {
   resetSearch,
 } from '../../../actions/searchActions';
 import { fetchActivitiesFromCity } from '../../../actions/activityActions';
-import { logout } from '../../../actions/userActions';
+import { logout, fetchUserWithId } from '../../../actions/userActions';
 
 // Import utils
 import rewriteImagePath from '../../../utils/rewriteImagePath';
@@ -33,12 +33,19 @@ const Header = () => {
   const navigate = useNavigate();
 
   const token = JSON.parse(localStorage.getItem('token'));
-  const thumbnail = JSON.parse(localStorage.getItem('thumbnail'));
-
+  const userId = JSON.parse(localStorage.getItem('id'));
   const isLogged = token !== null;
 
+  useEffect(() => {
+    // If userId is not null, fetch the user with the id
+    if (userId) {
+      dispatch(fetchUserWithId(userId, 'current', navigate));
+    }
+  }, []);
+
   let userPictureUrl = '';
-  if (isLogged && thumbnail) {
+  const thumbnail = useSelector((state) => state.user.currentUser.thumbnail);
+  if (isLogged) {
     userPictureUrl = rewriteImagePath(thumbnail);
   }
 

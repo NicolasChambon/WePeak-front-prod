@@ -25,7 +25,7 @@ const App = () => {
   const location = useLocation();
   const message = useSelector((state) => state.global.popUpMessage.message);
 
-  const excludedPaths = ['/login', '/register'];
+  const excludedPaths = ['/login', '/register', '/login/first-time'];
   const isExcludedPath = excludedPaths.includes(location.pathname);
 
   return (
@@ -41,6 +41,7 @@ const App = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/legal" element={<Legal />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/login/:slug" element={<Login />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/profile/edit" element={<ProfileEdition />} />

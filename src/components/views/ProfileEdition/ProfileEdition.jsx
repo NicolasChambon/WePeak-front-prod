@@ -11,6 +11,9 @@ import {
   deleteProfile,
 } from '../../../actions/editProfileActions';
 
+// Import utils
+import rewriteImagePath from '../../../utils/rewriteImagePath';
+
 // Import stylesheet
 import './ProfileEdition.scss';
 
@@ -86,7 +89,7 @@ const ProfileEdition = () => {
   if (imageInput) {
     image = imageInput;
   } else {
-    image = currentThumbnail;
+    image = rewriteImagePath(currentThumbnail);
   }
 
   // Open/Close the delete profile window when press on "Supprimer mon profil" button

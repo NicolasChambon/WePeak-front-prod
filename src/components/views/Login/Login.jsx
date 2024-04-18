@@ -1,11 +1,12 @@
 // Import necessary librairies
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
-import { NavLink, Link, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { NavLink, Link, useNavigate, useParams } from 'react-router-dom';
 import { FiEye, FiEyeOff, FiArrowUpRight } from 'react-icons/fi';
 
 // Import actions
 import { changeLoginInput, postLoginForm } from '../../../actions/userActions';
+import { writePopUpMessage } from '../../../actions/globalActions';
 
 // Import stylesheet and logo
 import './Login.scss';
@@ -15,6 +16,23 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isVisibile, setIsVisible] = useState(false);
+
+  const { slug } = useParams();
+
+  useEffect(() => {
+    if (slug === 'first-time') {
+      // we display a message to inform the user that he has successfully registered
+      dispatch(
+        writePopUpMessage(
+          'Votre compte a bien été créé, vous pouvez maintenant vous connecter',
+          'success'
+        )
+      );
+      setTimeout(() => {
+        dispatch(writePopUpMessage(''));
+      }, 5000);
+    }
+  }, [slug, dispatch]);
 
   const errorMessage = useSelector((state) => state.user.loginErrorMessage);
 

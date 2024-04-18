@@ -117,7 +117,6 @@ const userMiddleware = (store) => (next) => (action) => {
     case LOGOUT: {
       localStorage.removeItem('token');
       localStorage.removeItem('id');
-      localStorage.removeItem('thumbnail');
       store.dispatch(writePopUpMessage('Vous avez été déconnecté', 'success'));
       setTimeout(() => {
         store.dispatch(removePopUpMessage());
