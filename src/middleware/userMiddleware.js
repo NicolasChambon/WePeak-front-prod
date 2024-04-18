@@ -31,9 +31,7 @@ const userMiddleware = (store) => (next) => (action) => {
               handleUserPosition({ lat: latitude, lng: longitude })
             );
           },
-          (error) => {
-            console.log('Error:', error);
-          }
+          (error) => {}
         );
       }
       break;
@@ -140,7 +138,6 @@ const userMiddleware = (store) => (next) => (action) => {
         action.navigate('/login');
         return;
       }
-      console.log('FETCH_USER_WITH_ID', action.id);
       fetch(
         `https://melvinleroux-server.eddi.cloud/api/v1/users/${action.id}`,
         {

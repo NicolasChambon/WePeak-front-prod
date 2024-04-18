@@ -17,7 +17,7 @@ import Calendar from './Calendar/Calendar';
 const Activities = () => {
   const activityList = useSelector((state) => state.activity.activities);
 
-  let lastSearchedCity = useSelector(
+  const lastSearchedCity = useSelector(
     (state) => state.activity.lastSearchedCity
   );
 

@@ -32,8 +32,8 @@ const EventCard = ({
             day: 'numeric',
           })}
         </time>
-        <p className="EventCard-content-city">{city}</p>
         <h3 className="EventCard-content-title">{title}</h3>
+        <p className="EventCard-content-city">{city}</p>
         <Link to={`/activities/${slug}`} className="EventCard-content-link">
           <span>Lire plus</span>
           <IconContext.Provider value={{ size: '.6rem' }}>

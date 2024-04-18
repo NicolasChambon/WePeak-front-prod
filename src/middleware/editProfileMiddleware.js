@@ -26,7 +26,6 @@ const editProfileMiddleware = (store) => (next) => (action) => {
         action.navigate('/login');
         return;
       }
-      console.log('avant', store.getState().editProfile.base64Image);
       fetch(
         `https://melvinleroux-server.eddi.cloud/api/v1/users/${action.id}`,
         {
@@ -54,7 +53,6 @@ const editProfileMiddleware = (store) => (next) => (action) => {
         }
       )
         .then((response) => {
-          console.log('avant', store.getState().editProfile.base64Image);
           if (!response.ok) {
             return response.json().then((error) => {
               throw new Error(error.errors || 'Network response was not ok');

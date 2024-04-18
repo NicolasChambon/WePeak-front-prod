@@ -26,7 +26,7 @@
     }
   }
 
-  &-apply {
+  &-button {
     align-items: center;
     background-color: v.$accentColor;
     border-radius: v.$borderRadius;
@@ -41,6 +41,30 @@
 
     &:hover {
       background-color: v.$accentColorLight;
+    }
+
+    &.sign-in {
+      background-color: v.$primaryColor;
+
+      &:hover {
+        background-color: v.$primaryColorLight;
+      }
+    }
+
+    &.sign-off {
+      background-color: v.$secondaryColor;
+
+      &:hover {
+        background-color: v.$secondaryColorLight;
+      }
+    }
+
+    &.edit {
+      background-color: v.$accentColor;
+
+      &:hover {
+        background-color: v.$accentColorLight;
+      }
     }
   }
 }

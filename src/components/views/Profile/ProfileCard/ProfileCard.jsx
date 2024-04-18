@@ -18,7 +18,6 @@ const ProfileCard = ({
   subscriptionsNumber,
   pastActivitiesNumber,
 }) => {
-  console.log(thumbnail);
   return (
     <div className="ProfileCard">
       <div className="ProfileCard-imgContainer">

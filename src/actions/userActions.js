@@ -43,9 +43,8 @@ export const postLoginForm = (navigate) => ({
   navigate,
 });
 
-export const handleSuccessLogin = (loggedData) => ({
+export const handleSuccessLogin = () => ({
   type: HANDLE_SUCCESS_LOGIN,
-  loggedData,
 });
 
 export const setLoginErrorMessage = (message) => ({
