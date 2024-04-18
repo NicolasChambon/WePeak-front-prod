@@ -28,7 +28,7 @@ const ParticipationsCard = ({ title, participations }) => {
                 {participation.activity.name}
               </p>
               <p className="ParticipationsCard-list-item-content-sport">
-                {participation.activity.sports[0].name}
+                {participation.activity.sports[0].label}
               </p>
               <p className="ParticipationsCard-list-item-content-locationAndDate">
                 {`${participation.activity.city}, ${new Date(

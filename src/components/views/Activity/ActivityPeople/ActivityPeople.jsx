@@ -1,6 +1,11 @@
+// Import necessary libraries
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+// Import utils
+import rewriteImagePath from '../../../../utils/rewriteImagePath';
+
+// Import stylesheet
 import './ActivityPeople.scss';
 
 const ActivityPeople = ({ people, groupSize }) => {
@@ -17,7 +22,7 @@ const ActivityPeople = ({ people, groupSize }) => {
           <Link to={`/users/${person.user.id}`} key={person.id}>
             <div className="ActivityPeople-cards-card">
               <div className="ActivityPeople-cards-card-imgContainer">
-                <img src={person.user.thumbnail} alt="" />
+                <img src={rewriteImagePath(person.user.thumbnail)} alt="" />
               </div>
 
               <p className="ActivityPeople-cards-card-name">

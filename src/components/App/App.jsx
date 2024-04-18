@@ -1,5 +1,6 @@
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 import About from '../views/About/About';
 import Activities from '../views/Activities/Activities';
@@ -27,6 +28,37 @@ const App = () => {
 
   const excludedPaths = ['/login', '/register', '/login/first-time'];
   const isExcludedPath = excludedPaths.includes(location.pathname);
+
+  const getPageTitle = (pathname) => {
+    switch (pathname) {
+      case '/':
+        return 'Home';
+      case '/about':
+        return 'About';
+      case '/activities':
+        return 'Activities';
+      case '/contact':
+        return 'Contact';
+      case '/legal':
+        return 'Legal';
+      case '/login':
+        return 'Login';
+      case '/privacy':
+        return 'Privacy';
+      case '/profile':
+        return 'Profile';
+      case '/profile/edit':
+        return 'Edit Profile';
+      case '/register':
+        return 'Register';
+      default:
+        return 'Page Not Found';
+    }
+  };
+
+  useEffect(() => {
+    document.title = `WePeak | ${getPageTitle(location.pathname)}`;
+  }, [location.pathname]);
 
   return (
     <div className="App">

@@ -1,26 +1,25 @@
+// Import necessary libraries and dependencies
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { RiImageAddFill } from 'react-icons/ri';
 import { FaTrashAlt } from 'react-icons/fa';
-
-import {
-  changeInputSearch,
-  changeInputSearchValue,
-  fetchCitiesSearch,
-  resetSearch,
-} from '../../../actions/searchActions';
-import { fetchActivitiesFromCity } from '../../../actions/activityActions';
 import Map from './Map/Map';
 
-import './CreateActivity.scss';
-import imageByDefault from '../../../assets/images/image_placeholder.png';
-import InputSearch from './InputSearch/InputSearch';
+// Import actions
+import { changeInputSearchValue } from '../../../actions/searchActions';
 import { fetchSports } from '../../../actions/sportsActions';
 import {
   changeInputValue,
   postActivityForm,
 } from '../../../actions/createActivityActions';
+
+// Import sub-components
+import InputSearch from './InputSearch/InputSearch';
+
+// Import stylesheet and image
+import './CreateActivity.scss';
+import imageByDefault from '../../../assets/images/image_placeholder.png';
 
 const CreateActivity = () => {
   const navigate = useNavigate();
@@ -48,11 +47,11 @@ const CreateActivity = () => {
   );
 
   function transformerDate(date) {
-    // Diviser la date en un tableau [année, mois, jour]
+    // Divide the date into an array [year, month, day]
     const parties = date.split('-');
-    // Réorganiser les parties pour obtenir le format MM-DD-YYYY
+    // Reorganize the parts to get the MM-DD-YYYY format
     const dateReorganisee = `${parties[1]}-${parties[2]}-${parties[0]}`;
-    // Remplacer les tirets par des slashes
+    // Replace the dashes with slashes
     return dateReorganisee.replace(/-/g, '/');
   }
 
@@ -165,7 +164,7 @@ const CreateActivity = () => {
                 {sports &&
                   sports.map((sport) => (
                     <option key={sport.id} value={sport.id}>
-                      {sport.name}
+                      {sport.label}
                     </option>
                   ))}
               </select>

@@ -9,6 +9,9 @@ import {
   fetchAdressFromCoordinates,
 } from '../../../actions/activityActions';
 
+// Import utils
+import rewriteImagePath from '../../../utils/rewriteImagePath';
+
 // Import components
 import ActivityHeader from './ActivityHeader/ActivityHeader';
 import ActivityIllustration from './ActivityIllustration/ActivityIllustration';
@@ -68,9 +71,8 @@ const Activity = () => {
         name={activity.name}
         sport={activity.sport}
         userId={activity.createdBy.id}
-        userPicture={activity.createdBy.thumbnail}
         userName={activity.createdBy.pseudo}
-        userThumbnail={activity.createdBy.thumbnail}
+        userThumbnail={rewriteImagePath(activity.createdBy.thumbnail)}
       />
       <ActivityIllustration
         picture={activity.thumbnail}
@@ -85,7 +87,7 @@ const Activity = () => {
         }
         lat={activity.lat}
         lng={activity.lng}
-        thumbnail={activity.thumbnail}
+        thumbnail={rewriteImagePath(activity.thumbnail)}
       />
       <ActivityDetailApply
         description={activity.description}

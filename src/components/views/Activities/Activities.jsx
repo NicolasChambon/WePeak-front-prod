@@ -13,6 +13,7 @@ import data from '/src/filtersData';
 // Import stylesheet
 import './Activities.scss';
 import Calendar from './Calendar/Calendar';
+import rewriteImagePath from '../../../utils/rewriteImagePath';
 
 const Activities = () => {
   const activityList = useSelector((state) => state.activity.activities);
@@ -76,7 +77,7 @@ const Activities = () => {
             difficulty={activity['0'].difficulty.label}
             slug={activity['0'].id}
             sport={activity['0'].sports[0].label}
-            thumbnail={activity['0'].thumbnail}
+            thumbnail={rewriteImagePath(activity['0'].thumbnail)}
           />
         ))}
       </div>

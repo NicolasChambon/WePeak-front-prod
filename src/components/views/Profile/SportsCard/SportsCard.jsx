@@ -15,7 +15,7 @@ const SportsCard = ({ sports }) => {
             to="/activities"
             className="SportsCard-list-sport"
           >
-            {sport.name}
+            {sport.label}
           </Link>
         ))}
       </div>

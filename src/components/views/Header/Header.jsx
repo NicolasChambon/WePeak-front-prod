@@ -133,6 +133,12 @@ const Header = () => {
     setIsProfileOpen(!isProfileOpen);
   };
 
+  // if current page is /activities/create, we hide the search bar
+  let isSearchAvailable = true;
+  if (window.location.pathname === '/activities/create') {
+    isSearchAvailable = false;
+  }
+
   return (
     <header className={`Header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="Header-left">
@@ -146,7 +152,7 @@ const Header = () => {
           </div>
         </Link>
 
-        {!isSearchOpen && (
+        {!isSearchOpen && isSearchAvailable && (
           <button
             type="button"
             className="Header-left-openSearch open"
@@ -155,7 +161,7 @@ const Header = () => {
             <LuSearch className="Header-left-openSearch-icon" />
           </button>
         )}
-        {isSearchOpen && (
+        {isSearchOpen && isSearchAvailable && (
           <button
             type="button"
             className="Header-left-openSearch close"
@@ -166,7 +172,7 @@ const Header = () => {
         )}
       </div>
 
-      {isSearchOpen && (
+      {isSearchOpen && isSearchAvailable && (
         <form
           className="Header-form"
           onSubmit={(e) => {
