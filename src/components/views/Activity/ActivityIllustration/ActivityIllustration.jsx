@@ -3,9 +3,12 @@ import { TbClockHour8 } from 'react-icons/tb';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
 import PropTypes from 'prop-types';
-import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
 
+// Import styles and assets
+import 'leaflet/dist/leaflet.css';
 import './ActivityIllustration.scss';
+import markerIcon from '../../../../assets/marker-icon.svg';
 
 const ActivityIllustration = ({
   date,
@@ -24,6 +27,14 @@ const ActivityIllustration = ({
     map.setView(center, zoom);
     return null;
   };
+
+  // Custom marker icon
+  const customIcon = L.icon({
+    iconUrl: markerIcon,
+    iconSize: [32, 32],
+    // Point of the icon which will correspond to marker's location
+    iconAnchor: [16, 32],
+  });
 
   return (
     <div className="ActivityIllustration">
@@ -63,7 +74,7 @@ const ActivityIllustration = ({
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Marker position={[lat, lng]} />
+            <Marker position={[lat, lng]} icon={customIcon} />
           </MapContainer>
         </div>
       </div>
