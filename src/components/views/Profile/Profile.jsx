@@ -19,6 +19,9 @@ import rewriteImagePath from '../../../utils/rewriteImagePath';
 import './Profile.scss';
 
 const Profile = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

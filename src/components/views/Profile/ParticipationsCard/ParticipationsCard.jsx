@@ -1,8 +1,12 @@
+// Import necessary libraries
 import { Link } from 'react-router-dom';
-
 import { IoIosMore } from 'react-icons/io';
 import PropTypes from 'prop-types';
 
+// Import utils
+import rewriteImagePath from '../../../../utils/rewriteImagePath';
+
+// Import stylesheet
 import './ParticipationsCard.scss';
 
 const ParticipationsCard = ({ title, participations }) => {
@@ -19,7 +23,10 @@ const ParticipationsCard = ({ title, participations }) => {
             key={participation.activity.id}
           >
             <div className="ParticipationsCard-list-item-imgContainer">
-              <img src={participation.activity.thumbnail} alt="" />
+              <img
+                src={rewriteImagePath(participation.activity.thumbnail)}
+                alt=""
+              />
             </div>
             <div className="ParticipationsCard-list-item-content">
               <p className="ParticipationsCard-list-item-content-name">
