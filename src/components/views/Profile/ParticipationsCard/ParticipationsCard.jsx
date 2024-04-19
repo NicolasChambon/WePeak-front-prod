@@ -13,16 +13,14 @@ const ParticipationsCard = ({ title, participations }) => {
       </h4>
       <div className="ParticipationsCard-list">
         {participations.map((participation) => (
-          <div
+          <Link
+            to={`/activities/${participation.activity.id}`}
             className="ParticipationsCard-list-item"
             key={participation.activity.id}
           >
-            <Link
-              className="ParticipationsCard-list-item-imgContainer"
-              to={`/activities/${participation.activity.id}`}
-            >
+            <div className="ParticipationsCard-list-item-imgContainer">
               <img src={participation.activity.thumbnail} alt="" />
-            </Link>
+            </div>
             <div className="ParticipationsCard-list-item-content">
               <p className="ParticipationsCard-list-item-content-name">
                 {participation.activity.name}
@@ -40,7 +38,7 @@ const ParticipationsCard = ({ title, participations }) => {
                 })}`}
               </p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
       {participations.length > 3 && (

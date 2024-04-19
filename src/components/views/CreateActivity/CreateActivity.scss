@@ -156,3 +156,17 @@
     }
   }
 }
+
+@media (max-width: v.$tablet) {
+  .CreateActivity {
+    padding: 2rem;
+  }
+}
+@media (max-width: v.$mobile) {
+  .CreateActivity {
+    padding: 1.5rem;
+    &-form {
+      grid-template-columns: 1fr;
+    }
+  }
+}

@@ -28,16 +28,20 @@
       padding: 0.2rem 0.4rem;
       margin-right: 0.5rem;
 
-      &.facile {
+      &.Escalade {
         background-color: green;
       }
 
-      &.moyen {
-        background-color: orange;
+      &.Surf {
+        background-color: rgb(111, 193, 210);
       }
 
-      &.difficile {
-        background-color: red;
+      &.Ski {
+        background-color: rgb(112, 145, 151);
+      }
+
+      &.Randonnée {
+        background-color: rgb(208, 164, 89);
       }
     }
 
@@ -54,9 +58,16 @@
     }
 
     &-city {
-      font-size: calc(v.$textSize * 0.9);
+      font-size: 0.65rem;
       font-weight: 500;
+      display: flex;
+      gap: 0.25rem;
+      align-items: center;
       margin-bottom: 1rem;
+
+      & span {
+        font-size: 0.5rem;
+      }
     }
 
     &-link {
@@ -70,6 +81,16 @@
       &:hover {
         text-decoration: underline;
         color: v.$accentColor;
+      }
+    }
+  }
+}
+
+@media (max-width: v.$tablet) {
+  .EventCard {
+    &-content {
+      &-category {
+        text-wrap: nowrap;
       }
     }
   }

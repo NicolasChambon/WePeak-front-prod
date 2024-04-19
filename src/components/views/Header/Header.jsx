@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { LuSearch, LuSearchX, LuUser, LuLogOut } from 'react-icons/lu';
+import { MdPlace } from 'react-icons/md';
+
 import {
   IoIosAddCircleOutline,
   IoIosArrowDown,
@@ -208,6 +210,7 @@ const Header = () => {
                         );
                       }}
                     >
+                      <MdPlace className="Header-form-search-cities-city-icon" />
                       {city.placeName}, {city.postalCode}
                     </button>
                   ))}

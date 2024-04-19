@@ -51,6 +51,7 @@ const createActivityMiddleware = (store) => (next) => (action) => {
           lat: Number(store.getState().search.searchedCity.lat),
           lng: Number(store.getState().search.searchedCity.lng),
           groupSize: Number(store.getState().createActivity.groupSizeInput),
+          thumbnail: store.getState().createActivity.base64Image,
           sport: [
             {
               id: Number(store.getState().createActivity.sportInput),

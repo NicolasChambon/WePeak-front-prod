@@ -200,12 +200,25 @@
       width: 90%;
       padding: 1rem;
 
+      &-logo {
+        width: 2.5rem;
+      }
+
+      &-title {
+        font-size: 1.25rem;
+      }
+
+      &-register {
+        font-size: v.$textSize;
+        margin-bottom: 0.25rem;
+      }
+
       &-form {
         width: 90%;
 
         &-wrapper {
           flex-direction: column;
-          gap: 0.5rem;
+          gap: 0.25rem;
           &-row {
             width: 100%;
           }

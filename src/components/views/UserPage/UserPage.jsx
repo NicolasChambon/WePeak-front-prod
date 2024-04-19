@@ -6,10 +6,14 @@ import { useParams, useNavigate } from 'react-router-dom';
 // Import actions
 import { fetchUserWithId } from '../../../actions/userActions';
 
+// Import utils
+import rewriteImagePath from '../../../utils/rewriteImagePath';
+
 // Import sub-components
 import ProfileCard from '../Profile/ProfileCard/ProfileCard';
 import SportsCard from '../Profile/SportsCard/SportsCard';
 import ParticipationsCard from '../Profile/ParticipationsCard/ParticipationsCard';
+import EditProfile from '../Profile/EditProfile/EditProfile';
 
 // Import stylesheet
 import './UserPage.scss';
@@ -18,6 +22,8 @@ const UserPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { slug } = useParams();
+
+  const userId = JSON.parse(localStorage.getItem('id'));
 
   useEffect(() => {
     dispatch(fetchUserWithId(slug, 'visited', navigate));
@@ -51,12 +57,20 @@ const UserPage = () => {
           email=""
           city={user.city}
           memberSince={user.createdAt}
-          thumbnail={user.thumbnail}
+          thumbnail={rewriteImagePath(user.thumbnail)}
           bio={user.description}
           sportsNumber={user.sports.length}
           subscriptionsNumber={futureActivities.length}
           pastActivitiesNumber={pastActivities.length}
         />
+        {userId === user.id && (
+          <EditProfile
+            className="Profile-left-editProfile"
+            firstname={user.firstname}
+            lastname={user.lastname}
+            thumbnail={rewriteImagePath(user.thumbnail)}
+          />
+        )}
       </div>
       <div className="UserPage-right">
         <SportsCard

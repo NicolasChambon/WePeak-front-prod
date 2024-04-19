@@ -5,6 +5,7 @@ import {
 } from '../actions/createActivityActions';
 
 export const initialState = {
+  base64Image: '',
   titleInput: '',
   descriptionInput: '',
   dateInput: '',

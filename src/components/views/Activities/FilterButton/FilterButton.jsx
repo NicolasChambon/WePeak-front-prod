@@ -7,7 +7,7 @@ import { fetchActivitiesFromCityWithFilter } from '../../../../actions/activityA
 
 import './FilterButton.scss';
 
-const FilterButton = ({ title, options, onClick, active }) => {
+const FilterButton = ({ title, options, onClick, active, resetActive }) => {
   const dispatch = useDispatch();
   const lastSearchedCity = useSelector(
     (state) => state.activity.lastSearchedCity
@@ -44,6 +44,7 @@ const FilterButton = ({ title, options, onClick, active }) => {
                   option.value
                 )
               );
+              resetActive();
             }}
           >
             {option.label}

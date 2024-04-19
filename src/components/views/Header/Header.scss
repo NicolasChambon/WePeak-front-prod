@@ -40,7 +40,7 @@
     }
 
     &-logo {
-      max-height: 2.5rem;
+      max-height: 2.25rem;
       order: 1;
       margin: 0.5rem;
     }
@@ -102,25 +102,38 @@
       }
 
       &-cities {
-        background-color: v.$secondaryColorT;
+        background-color: white;
         border: 1px solid v.$secondaryColor;
         border-radius: v.$borderRadius;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
         margin-top: 0.2rem;
+        padding: 0.5rem;
         overflow: hidden;
 
         &-city {
-          align-items: center;
-          background-color: v.$secondaryColorT;
+          background-color: transparent;
           border: none;
+          border-radius: v.$borderRadius;
+          cursor: pointer;
           display: flex;
-          font-family: v.$textFont;
-          height: 2rem;
-          padding: 1.3rem 1rem;
+          align-items: center;
+          gap: 0.75rem;
+          padding: 0.5rem;
           text-align: left;
-          width: 100%;
 
           &:hover {
             background-color: v.$secondaryColor;
+          }
+
+          &-icon {
+            color: v.$textColor;
+            padding: 0.5rem;
+            background-color: v.$secondaryColorDark;
+            border-radius: v.$borderRadius;
+            height: 2rem;
+            width: 2rem;
           }
         }
       }
@@ -189,9 +202,9 @@
         &-picture-container {
           border: v.$backgroundColorDark solid 1px;
           border-radius: 50%;
-          height: 3.3rem;
+          height: 3rem;
           overflow: hidden;
-          width: 3.3rem;
+          width: 3rem;
 
           img {
             height: 100%;
@@ -207,7 +220,7 @@
 
       .create {
         &-icon {
-          font-size: 1.5rem;
+          font-size: 1.25rem;
         }
 
         align-items: center;

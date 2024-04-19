@@ -39,6 +39,7 @@ const InputSearch = ({ id, adressFromMarker = null }) => {
   };
 
   // THIS CODE-BLOCK HANDLE REMOVING OF CITIES SUGGESTIONS WHEN CLICKING OUTSIDE
+  // eslint-disable-next-line consistent-return
   useEffect(() => {
     if (cityList.length < 20 && cityList.length > 0) {
       const handleClickOutside = (e) => {

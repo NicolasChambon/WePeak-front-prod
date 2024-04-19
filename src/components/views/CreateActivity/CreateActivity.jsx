@@ -24,6 +24,11 @@ import imageByDefault from '../../../assets/images/image_placeholder.png';
 const CreateActivity = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const errorMessage = useSelector((state) => state.register.errorMessage);
   const [image, setImage] = useState(null);
   const sports = useSelector((state) => state.sports.sports);
@@ -82,6 +87,7 @@ const CreateActivity = () => {
       const reader = new FileReader();
       reader.onloadend = () => {
         setImage(reader.result);
+        dispatch(changeInputValue(reader.result, 'base64Image'));
       };
       reader.readAsDataURL(file);
     }
@@ -237,7 +243,7 @@ const CreateActivity = () => {
                 <option value="0">Selectionner...</option>
                 <option value="5">Moins de 5 personnes</option>
                 <option value="10">Moins de 10 personnes</option>
-                <option value="11+">Plus de 10 personnes</option>
+                <option value="11">Plus de 10 personnes</option>
               </select>
             </div>
             <div className="CreateActivity-form-left-wrapper-row">

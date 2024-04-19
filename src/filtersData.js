@@ -10,11 +10,13 @@ export default [
     ],
   },
   {
-    title: { value: 'difficulty', label: 'Difficulté' },
+    title: { value: 'sport', label: 'Sport' },
     options: [
-      { value: 'facile', label: 'Facile' },
-      { value: 'moyen', label: 'Moyen' },
-      { value: 'difficile', label: 'Difficile' },
+      { value: 'back-country-skiing', label: 'Ski de randonnée' },
+      { value: 'climbing', label: 'Escalade' },
+      { value: 'hiking', label: 'Randonnée' },
+      { value: 'surfing', label: 'Surf' },
+      { value: 'mountain-biking', label: 'VTT en montagne' },
     ],
   },
   {
@@ -23,14 +25,6 @@ export default [
       { value: '2-5', label: '5 personnes et moins' },
       { value: '6-10', label: 'Entre 6 et 10 personnes' },
       { value: '11', label: 'Plus de 10 personnes' },
-    ],
-  },
-  {
-    title: { value: 'sport', label: 'Sport' },
-    options: [
-      { value: 'backCountrySkiing', label: 'Ski de randonnée' },
-      { value: 'climbing', label: 'Escalade' },
-      { value: 'trail', label: 'Trail' },
     ],
   },
 ];

@@ -30,13 +30,15 @@
   &-dropdown {
     position: absolute;
     cursor: pointer;
-    top: 110%;
-    background-color: v.$secondaryColorLight;
+    top: 120%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
     border-radius: v.$borderRadius;
     max-height: 0;
     overflow-y: hidden;
-    min-width: 100%;
-    width: auto;
+    width: 175%;
     z-index: 9999;
     transition: all 0.5s cubic-bezier(0, 1, 0, 1);
 
@@ -48,14 +50,28 @@
 
     &-option {
       font-size: calc(v.$textSize * 0.8);
-      color: v.$textColor;
-      padding: 0.75rem 1rem;
-      text-align: start;
+      background-color: transparent;
+      border: none;
+      border-radius: v.$borderRadius;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      text-align: left;
       transition: all 0.25s cubic-bezier(0, 1, 0, 1);
 
       &:hover {
-        background-color: v.$accentColor;
-        color: v.$backgroundColor;
+        background-color: v.$secondaryColor;
+      }
+
+      &-icon {
+        color: v.$textColor;
+        padding: 0.5rem;
+        background-color: v.$secondaryColorDark;
+        border-radius: v.$borderRadius;
+        height: 2rem;
+        width: 2rem;
       }
     }
   }

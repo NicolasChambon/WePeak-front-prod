@@ -156,7 +156,8 @@ const Register = () => {
                 required
               />
               <label htmlFor="age">
-                Je jure sur le caveau de mon père que j&apos;ai plus de 18 ans
+                Je certifie avoir plus de 18 ans et accepte les conditions
+                générales d&apos;utilisation.
               </label>
             </div>
           </fieldset>
