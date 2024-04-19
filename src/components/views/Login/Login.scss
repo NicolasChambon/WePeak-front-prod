@@ -11,7 +11,7 @@
   height: 100dvh;
   overflow-y: hidden;
   position: relative;
-  width: 100%;
+  max-width: 100%;
 
   &-content {
     background-color: rgba(255, 255, 255, 0.9);

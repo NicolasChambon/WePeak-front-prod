@@ -1,11 +1,13 @@
 @use '/src/styles/variables' as v;
 
 .EventCard {
+  max-width: 450px;
+
   &-image {
     object-fit: cover;
     background-position: center;
     border-radius: calc(v.$borderRadius / 2);
-    height: 200px;
+    height: 225px;
     width: 100%;
   }
 
@@ -88,7 +90,26 @@
 
 @media (max-width: v.$tablet) {
   .EventCard {
+    max-width: 90%;
+    &-image {
+      height: 200px;
+    }
     &-content {
+      &-category {
+        text-wrap: nowrap;
+      }
+    }
+  }
+}
+
+@media (max-width: v.$mobile) {
+  .EventCard {
+    &-image {
+      height: 200px;
+      width: 90%;
+    }
+    &-content {
+      width: 85%;
       &-category {
         text-wrap: nowrap;
       }

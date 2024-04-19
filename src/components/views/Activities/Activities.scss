@@ -7,7 +7,7 @@
   gap: 1rem;
   margin: auto;
   padding: 3rem 0;
-  width: 80%;
+  width: 85%;
 
   &-title {
     font-size: 1.5rem;
@@ -28,6 +28,7 @@
     display: grid;
     gap: 1rem;
     grid-template-columns: repeat(3, 1fr);
+    width: 100%;
   }
 
   .Button {
@@ -41,10 +42,11 @@
     }
   }
 }
-@media (max-width: v.$mobile) {
+@media (max-width: 800px) {
   .Activities {
     &-grid {
       grid-template-columns: 1fr;
+      max-width: 400px;
     }
   }
 }
