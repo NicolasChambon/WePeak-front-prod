@@ -47,7 +47,7 @@ const EventCard = ({
         </p>
         <Link to={`/activities/${slug}`} className="EventCard-content-link">
           <span>Lire plus</span>
-          <IconContext.Provider value={{ size: '.6rem' }}>
+          <IconContext.Provider value={{ size: '.75rem' }}>
             <FiArrowRight />
           </IconContext.Provider>
         </Link>

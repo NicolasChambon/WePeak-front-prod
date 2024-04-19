@@ -24,7 +24,7 @@ export default [
     options: [
       { value: '2-5', label: '5 personnes et moins' },
       { value: '6-10', label: 'Entre 6 et 10 personnes' },
-      { value: '11', label: 'Plus de 10 personnes' },
+      { value: '11-40', label: 'Plus de 10 personnes' },
     ],
   },
 ];
