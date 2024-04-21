@@ -5,13 +5,12 @@ import PropTypes from 'prop-types';
 // Import stylesheet
 import './ActivityHeader.scss';
 
-const ActivityHeader = ({ name, userId, userName, userThumbnail }) => {
+const ActivityHeader = ({ name, userId, userName, userThumbnail, sport }) => {
   return (
     <div className="ActivityHeader">
       <h2 className="ActivityHeader-name">{name}</h2>
 
-      {/* TODO Dynamisation of sport when available in API */}
-      <h3 className="ActivityHeader-sport">Ski de randonnée</h3>
+      <h3 className="ActivityHeader-sport">{sport}</h3>
 
       <div className="ActivityHeader-host">
         <Link to={`/users/${userId}`}>
@@ -36,6 +35,7 @@ ActivityHeader.propTypes = {
   userId: PropTypes.number.isRequired,
   userName: PropTypes.string.isRequired,
   userThumbnail: PropTypes.string.isRequired,
+  sport: PropTypes.string.isRequired,
 };
 
 export default ActivityHeader;

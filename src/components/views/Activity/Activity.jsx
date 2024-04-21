@@ -64,12 +64,12 @@ const Activity = () => {
 
   // if activity and activityAdress are not yet available, return null
   if (!activity.createdBy || !activityAdress.address.road) return null;
-
+  console.log(activity);
   return (
     <main className="Activity">
       <ActivityHeader
         name={activity.name}
-        sport={activity.sport}
+        sport={activity.sports[0].label}
         userId={activity.createdBy.id}
         userName={activity.createdBy.pseudo}
         userThumbnail={rewriteImagePath(activity.createdBy.thumbnail)}
