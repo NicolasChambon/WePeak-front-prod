@@ -84,10 +84,6 @@ const userMiddleware = (store) => (next) => (action) => {
         .then((data) => {
           localStorage.setItem('token', JSON.stringify(data.token));
           localStorage.setItem('id', JSON.stringify(data.user.id));
-          localStorage.setItem(
-            'thumbnail',
-            JSON.stringify(data.user.thumbnail)
-          );
 
           store.dispatch(handleSuccessLogin(data));
           store.dispatch(

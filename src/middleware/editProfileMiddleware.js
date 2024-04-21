@@ -121,7 +121,8 @@ const editProfileMiddleware = (store) => (next) => (action) => {
           action.navigate('/');
           store.dispatch(resetEditProfileForm());
           store.dispatch(setErrorMessage(''));
-          store.dispatch(logout());
+          localStorage.removeItem('token');
+          localStorage.removeItem('id');
         })
         .catch((error) => {
           console.error('There was an error with your fetch operation:', error);
