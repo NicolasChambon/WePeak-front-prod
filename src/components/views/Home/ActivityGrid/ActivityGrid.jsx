@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+// Import utils
+import rewriteImagePath from '../../../../utils/rewriteImagePath';
+
 // Import components
 import EventCard from '../../../utils/EventCard/EventCard';
 
@@ -32,7 +35,7 @@ const ActivityGrid = ({ userPositionName }) => {
             difficulty={activity['0'].difficulty.label}
             slug={activity['0'].id}
             sport={activity['0'].sports[0].label}
-            thumbnail={activity['0'].thumbnail}
+            thumbnail={rewriteImagePath(activity['0'].thumbnail)}
           />
         ))}
       </div>
