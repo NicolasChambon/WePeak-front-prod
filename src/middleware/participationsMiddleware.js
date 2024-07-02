@@ -12,7 +12,7 @@ import { fetchActivity } from '../actions/activityActions';
 const participationsMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case HANDLE_CLICK_ON_SIGNIN_BUTTON: {
-      fetch('https://melvinleroux-server.eddi.cloud/api/v1/participations', {
+      fetch(`${import.meta.env.VITE_WEPEAK_API_URL}/participations`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ const participationsMiddleware = (store) => (next) => (action) => {
     }
     case HANDLE_CLICK_ON_SIGNOFF_BUTTON: {
       fetch(
-        `https://melvinleroux-server.eddi.cloud/api/v1/participations/${action.id}`,
+        `${import.meta.env.VITE_WEPEAK_API_URL}/participations/${action.id}`,
         {
           method: 'DELETE',
           headers: {

@@ -1,4 +1,4 @@
-POST https://melvinleroux-server.eddi.cloud/api/v1/contact HTTP/1.1
+POST ${import.meta.env.VITE_WEPEAK_API_URL}/contact HTTP/1.1
 Content-Type: application/json
 
 {

@@ -60,7 +60,7 @@ const userMiddleware = (store) => (next) => (action) => {
     }
     case POST_LOGIN_FORM: {
       const { emailInputLogin, passwordInputLogin } = store.getState().user;
-      fetch('https://melvinleroux-server.eddi.cloud/api/v1/login', {
+      fetch(`${import.meta.env.VITE_WEPEAK_API_URL}/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -133,16 +133,11 @@ const userMiddleware = (store) => (next) => (action) => {
         action.navigate('/login');
         return;
       }
-      fetch(
-        `https://melvinleroux-server.eddi.cloud/api/v1/users/${action.id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${JSON.parse(
-              localStorage.getItem('token')
-            )}`,
-          },
-        }
-      )
+      fetch(`${import.meta.env.VITE_WEPEAK_API_URL}/users/${action.id}`, {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
+        },
+      })
         .then((response) => {
           if (!response.ok) {
             throw new Error('Network response was not ok');

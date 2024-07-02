@@ -27,7 +27,7 @@ const editProfileMiddleware = (store) => (next) => (action) => {
         return;
       }
       fetch(
-        `https://melvinleroux-server.eddi.cloud/api/v1/users/${action.id}`,
+        `${import.meta.env.VITE_WEPEAK_API_URL}/users/${action.id}`,
         {
           method: 'PATCH',
           headers: {
@@ -93,7 +93,7 @@ const editProfileMiddleware = (store) => (next) => (action) => {
         return;
       }
       fetch(
-        `https://melvinleroux-server.eddi.cloud/api/v1/users/${action.id}`,
+        `${import.meta.env.VITE_WEPEAK_API_URL}/users/${action.id}`,
         {
           method: 'DELETE',
           headers: {

@@ -36,7 +36,7 @@ const createActivityMiddleware = (store) => (next) => (action) => {
         city = store.getState().search.searchedCity.name;
       }
 
-      fetch('https://melvinleroux-server.eddi.cloud/api/v1/activities', {
+      fetch(`${import.meta.env.VITE_WEPEAK_API_URL}/activities`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

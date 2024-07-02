@@ -1,5 +1,4 @@
 // Import necessary libraries
-import { useSelector } from 'react-redux';
 import { IconContext } from 'react-icons';
 import { FaLinkedin } from 'react-icons/fa';
 import {
@@ -69,7 +68,7 @@ const Footer = () => {
         <div className="Footer-main-account">
           <nav className="Footer-main-account-list">
             <li>
-              <h4>Account</h4>
+              <h4>Compte</h4>
             </li>
             <li>
               <Link to="/register">Inscription</Link>

@@ -11,7 +11,7 @@ import {
 const registerMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case POST_REGISTER_FORM: {
-      fetch('https://melvinleroux-server.eddi.cloud/api/v1/users', {
+      fetch(`${import.meta.env.VITE_WEPEAK_API_URL}/users`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

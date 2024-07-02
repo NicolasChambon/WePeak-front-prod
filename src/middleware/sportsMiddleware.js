@@ -3,7 +3,7 @@ import { FETCH_SPORTS, handleFetchSports } from '../actions/sportsActions';
 const sportMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case FETCH_SPORTS: {
-      fetch('https://melvinleroux-server.eddi.cloud/api/v1/sports', {
+      fetch(`${import.meta.env.VITE_WEPEAK_API_URL}/sports`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

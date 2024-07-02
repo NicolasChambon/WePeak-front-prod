@@ -11,7 +11,7 @@ import {
 const contactMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case POST_CONTACT_FORM: {
-      fetch('https://melvinleroux-server.eddi.cloud/api/v1/contact', {
+      fetch(`${import.meta.env.VITE_WEPEAK_API_URL}/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
