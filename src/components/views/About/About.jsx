@@ -49,7 +49,7 @@ const About = () => {
               <img src={tomPicture} alt="" />
             </div>
             <p className="About-team-members-member-role">
-              Développeur extrémité arrière
+              Développeur back-end
             </p>
             <p className="About-team-members-member-sport">VTTiste et skieur</p>
           </div>
@@ -62,7 +62,7 @@ const About = () => {
               />
             </div>
             <p className="About-team-members-member-role">
-              Développeur extrémité arrière
+              Développeur back-end
             </p>
             <p className="About-team-members-member-sport">
               VTTiste et skateur
@@ -74,7 +74,7 @@ const About = () => {
               <img src={victorPicture} alt="" />
             </div>
             <p className="About-team-members-member-role">
-              Développeur extrémité avant
+              Développeur front-end
             </p>
             <p className="About-team-members-member-sport">
               Skieur et randonneur
@@ -86,7 +86,7 @@ const About = () => {
               <img src={nicolasPicture} alt="" />
             </div>
             <p className="About-team-members-member-role">
-              Développeur extrémité avant
+              Développeur front-end
             </p>
             <p className="About-team-members-member-sport">
               Traileur et cycliste
